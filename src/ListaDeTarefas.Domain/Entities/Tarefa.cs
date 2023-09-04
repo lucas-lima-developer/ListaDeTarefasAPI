@@ -1,6 +1,6 @@
 ﻿using ListaDeTarefas.Domain.Enum;
 
-namespace ListaDeTarefas.Domain.Entidades
+namespace ListaDeTarefas.Domain.Entities
 {
     public class Tarefa : EntidadeBase
     {

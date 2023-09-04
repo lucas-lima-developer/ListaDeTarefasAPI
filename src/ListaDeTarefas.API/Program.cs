@@ -1,3 +1,6 @@
+using ListaDeTarefas.Infrastructure;
+using ListaDeTarefas.Domain.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,4 +25,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+AtualizarBaseDados();
+
 app.Run();
+
+void AtualizarBaseDados()
+{
+    var conexao = builder.Configuration.GetConexao();
+    var nomeDatabase = builder.Configuration.GetNomeDatabase();
+
+    Database.CriarDatabase(conexao, nomeDatabase);
+}

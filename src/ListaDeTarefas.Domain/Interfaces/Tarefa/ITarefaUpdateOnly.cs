@@ -2,6 +2,6 @@
 {
     public interface ITarefaUpdateOnly
     {
-        void Update(Entidades.Tarefa tarefa);
+        void Update(Entities.Tarefa tarefa);
     }
 }
