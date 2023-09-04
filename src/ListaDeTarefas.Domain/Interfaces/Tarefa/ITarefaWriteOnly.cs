@@ -2,7 +2,7 @@
 {
     public interface ITarefaWriteOnly
     {
-        Task Registrar(Entidades.Tarefa tarefa);
+        Task Registrar(Entities.Tarefa tarefa);
         Task Deletar(long tarefaId);
     }
 }

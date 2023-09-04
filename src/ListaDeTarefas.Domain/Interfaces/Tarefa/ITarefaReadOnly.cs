@@ -2,6 +2,6 @@
 {
     public interface ITarefaReadOnly
     {
-        Task<Entidades.Tarefa> RecuperarPorId(long tarefaId);
+        Task<Entities.Tarefa> RecuperarPorId(long tarefaId);
     }
 }
