@@ -1,4 +1,4 @@
-﻿namespace ListaDeTarefas.Domain.Entidades
+﻿namespace ListaDeTarefas.Domain.Entities
 {
     public class EntidadeBase
     {
