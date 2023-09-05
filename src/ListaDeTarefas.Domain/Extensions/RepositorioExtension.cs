@@ -17,5 +17,13 @@ namespace ListaDeTarefas.Domain.Extensions
 
             return $"{conexao}";
         }
+
+        public static string GetConexaoCompleta(this IConfiguration configurationManager)
+        {
+            var nomeDatabase = configurationManager.GetNomeDatabase();
+            var conexao = configurationManager.GetConexao();
+
+            return $"{conexao}Database={nomeDatabase}";
+        }
     }
 }
