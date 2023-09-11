@@ -2,11 +2,11 @@
 
 namespace ListaDeTarefas.Domain.Entities
 {
-    public class Tarefa : EntidadeBase
+    public class Tarefa : BaseEntity
     {
-        public string? Titulo { get; set; }
-        public string? Descricao { get;  set; }
-        public DateTime? DataConclusao { get; set; }
-        public Prioridade prioridade { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get;  set; }
+        public DateTimeOffset? CompletionDate { get; set; }
+        public Priority Priority { get; set; }
     }
 }
