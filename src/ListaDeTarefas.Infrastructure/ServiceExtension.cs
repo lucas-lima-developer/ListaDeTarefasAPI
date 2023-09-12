@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using ListaDeTarefas.Domain.Extensions;
+using ListaDeTarefas.Domain.Interfaces;
 using ListaDeTarefas.Infrastructure.Context;
+using ListaDeTarefas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +14,14 @@ namespace ListaDeTarefas.Infrastructure
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            AddContexto(services, configuration);
+            AddContext(services, configuration);
+
+            AddRepositories(services);
 
             CreateDatabase(configuration);
         }
 
-        private static void AddContexto(IServiceCollection services, IConfiguration configuration)
+        private static void AddContext(IServiceCollection services, IConfiguration configuration)
         {
             var versaoServidor = new MySqlServerVersion("8.0.34");
 
@@ -27,6 +31,13 @@ namespace ListaDeTarefas.Infrastructure
             {
                 options.UseMySql(conexaoString, versaoServidor);
             });
+        }
+
+        private static void AddRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<ITarefaRepository, TarefaRepository>();
         }
 
         private static void CreateDatabase(IConfiguration configuration)
