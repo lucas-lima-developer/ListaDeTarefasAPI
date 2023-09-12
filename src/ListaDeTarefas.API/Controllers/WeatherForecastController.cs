@@ -1,3 +1,5 @@
+using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
+using ListaDeTarefas.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.API.Controllers
@@ -6,28 +8,21 @@ namespace ListaDeTarefas.API.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IAddTarefaUseCase _addTarefaUseCase;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IAddTarefaUseCase addTarefaUseCase)
         {
             _logger = logger;
+            _addTarefaUseCase = addTarefaUseCase;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost(Name = "AddTarefa")]
+        public async Task<IActionResult> AddTarefa([FromBody] Tarefa novaTarefa)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            await _addTarefaUseCase.Execute(novaTarefa);
+
+            return Ok("Executado com sucesso");
         }
     }
 }
