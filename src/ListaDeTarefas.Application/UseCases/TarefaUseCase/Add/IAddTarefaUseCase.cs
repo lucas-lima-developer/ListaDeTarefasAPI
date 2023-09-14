@@ -4,6 +4,6 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Add
 {
     public interface IAddTarefaUseCase
     {
-        Task Execute(Tarefa newTarefa);
+        Task<Tarefa> Execute(Tarefa newTarefa);
     }
 }

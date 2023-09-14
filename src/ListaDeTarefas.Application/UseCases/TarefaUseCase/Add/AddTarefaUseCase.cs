@@ -15,10 +15,11 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Add
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(Tarefa novaTarefa)
+        public async Task<Tarefa> Execute(Tarefa novaTarefa)
         {
             _tarefaRepository.Create(novaTarefa);
             await _unitOfWork.Commit();
+            return novaTarefa;
         }
     }
 }
