@@ -1,4 +1,5 @@
 ﻿using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
+using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListaDeTarefas.Application
@@ -13,6 +14,7 @@ namespace ListaDeTarefas.Application
         private static void AddUseCases(IServiceCollection service)
         {
             service.AddScoped<IAddTarefaUseCase, AddTarefaUseCase>();
+            service.AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>();
         }
     }
 }
