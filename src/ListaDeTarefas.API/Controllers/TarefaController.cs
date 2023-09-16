@@ -1,6 +1,7 @@
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
+using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
 using ListaDeTarefas.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,13 +15,15 @@ namespace ListaDeTarefas.API.Controllers
         private readonly IAddTarefaUseCase _addTarefaUseCase;
         private readonly IGetAllTarefaUseCase _getAllTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
+        private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
 
         public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
-            , IDeleteTarefaUseCase deleteTarefaUseCase)
+            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase)
         {
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
+            _getByIdTarefaUseCase = getByIdTarefaUseCase;
         }
 
         [HttpPost]
@@ -28,6 +31,14 @@ namespace ListaDeTarefas.API.Controllers
         public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] Tarefa novaTarefa)
         {
             var tarefa = await _addTarefaUseCase.Execute(novaTarefa);
+
+            return Ok(tarefa);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Tarefa>> GetByIdTaerfa(long id)
+        {
+            var tarefa = await _getByIdTarefaUseCase.Execute(id);
 
             return Ok(tarefa);
         }
