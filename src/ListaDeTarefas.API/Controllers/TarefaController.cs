@@ -10,15 +10,14 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
-        private readonly ILogger<TarefaController> _logger;
+        
         private readonly IAddTarefaUseCase _addTarefaUseCase;
         private readonly IGetAllTarefaUseCase _getAllTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
 
-        public TarefaController(ILogger<TarefaController> logger, IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
+        public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
             , IDeleteTarefaUseCase deleteTarefaUseCase)
         {
-            _logger = logger;
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
