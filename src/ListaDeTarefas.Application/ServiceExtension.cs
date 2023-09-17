@@ -2,6 +2,7 @@
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
+using ListaDeTarefas.Application.UseCases.TarefaUseCase.Update;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListaDeTarefas.Application
@@ -19,6 +20,7 @@ namespace ListaDeTarefas.Application
             service.AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>();
             service.AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>();
             service.AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>();
+            service.AddScoped<IUpdateTearefaUseCase, UpdateTarefaUseCase>();
         }
     }
 }
