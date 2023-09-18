@@ -1,4 +1,5 @@
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
+using ListaDeTarefas.Application.UseCases.TarefaUseCase.Complete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
@@ -18,15 +19,17 @@ namespace ListaDeTarefas.API.Controllers
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
-
+        private readonly ICompleteTarefaUseCase _completeTarefaUseCase;
         public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
-            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase)
+            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase
+            , ICompleteTarefaUseCase completeTarefaUseCase)
         {
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
+            _completeTarefaUseCase = completeTarefaUseCase;
         }
 
         [HttpPost]
@@ -60,6 +63,13 @@ namespace ListaDeTarefas.API.Controllers
         {
             await _updateTarefaUseCase.Execute(id, updatedTarefa);
             return Ok("Tarefa atualizada com sucesso.");
+        }
+
+        [HttpPut("completar/{id}")]
+        public async Task<IActionResult> SetCompletedTarefa(long id)
+        {
+            await _completeTarefaUseCase.Execute(id);
+            return Ok("Tarefa completada com sucesso.");
         }
 
         [HttpDelete("deletar/{id}")]
