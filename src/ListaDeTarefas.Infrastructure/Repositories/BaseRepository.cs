@@ -17,19 +17,18 @@ namespace ListaDeTarefas.Infrastructure.Repositories
 
         public void Create(T entity)
         {
-            entity.DateCreated = DateTimeOffset.Now;
+            entity.DateCreated = DateTime.Now;
             Context.Add(entity);
         }
 
         public void Update(T entity)
         {
-            entity.DateUpdated = DateTimeOffset.Now;
+            entity.DateUpdated = DateTime.Now;
             Context.Update(entity);
         }
 
         public void Delete(T entity)
         {
-            entity.DateDeleted = DateTimeOffset.Now;
             Context.Remove(entity);
         }
 
