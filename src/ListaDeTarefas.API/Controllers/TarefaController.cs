@@ -44,9 +44,14 @@ namespace ListaDeTarefas.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Tarefa>> GetByIdTaerfa(long id)
         {
-            var tarefa = await _getByIdTarefaUseCase.Execute(id);
-
-            return Ok(tarefa);
+            try
+            {
+                var tarefa = await _getByIdTarefaUseCase.Execute(id);
+                return Ok(tarefa);
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
@@ -61,22 +66,40 @@ namespace ListaDeTarefas.API.Controllers
         [HttpPut("atualizar/{id}")]
         public async Task<IActionResult> UpdateTarefa(long id, [FromBody] Tarefa updatedTarefa)
         {
-            await _updateTarefaUseCase.Execute(id, updatedTarefa);
-            return Ok("Tarefa atualizada com sucesso.");
+            try
+            {
+                await _updateTarefaUseCase.Execute(id, updatedTarefa);
+                return Ok("Tarefa atualizada com sucesso.");
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("completar/{id}")]
         public async Task<IActionResult> SetCompletedTarefa(long id)
         {
-            await _completeTarefaUseCase.Execute(id);
-            return Ok("Tarefa completada com sucesso.");
+            try
+            {
+                await _completeTarefaUseCase.Execute(id);
+                return Ok("Tarefa completada com sucesso.");
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("deletar/{id}")]
         public async Task<IActionResult> DeleteTarefa(long id)
         {
-            await _deleteTarefaUseCase.Execute(id);
-            return Ok("Tarefa deletada com sucesso.");
+            try
+            {
+                await _deleteTarefaUseCase.Execute(id);
+                return Ok("Tarefa deletada com sucesso.");
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

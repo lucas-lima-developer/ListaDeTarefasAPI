@@ -34,7 +34,14 @@ namespace ListaDeTarefas.Infrastructure.Repositories
 
         public async Task<T> Get(long id)
         {
-            return await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            var t = await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+
+            if (t == null)
+            {
+                throw new Exception("entidade não encontrada");
+            }
+
+            return t;
         }
 
         public async Task<List<T>> GetAll()
