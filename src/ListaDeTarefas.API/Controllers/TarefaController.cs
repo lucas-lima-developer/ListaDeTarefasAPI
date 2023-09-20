@@ -74,12 +74,12 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeleteTarefa(long id)
+        public async Task<ActionResult<Tarefa>> DeleteTarefa(long id)
         {
             try
             {
-                await _deleteTarefaUseCase.Execute(id);
-                return Ok("Tarefa deletada com sucesso.");
+                var tarefa = await _deleteTarefaUseCase.Execute(id);
+                return Ok(new { Message = "Tarefa deletada com sucesso.", Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
