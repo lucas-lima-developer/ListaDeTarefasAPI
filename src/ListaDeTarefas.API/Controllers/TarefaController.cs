@@ -34,11 +34,11 @@ namespace ListaDeTarefas.API.Controllers
 
         [HttpPost]
         [Route("adicionar")]
-        public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] Tarefa novaTarefa)
+        public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] AddTarefaRequest request)
         {
-            var tarefa = await _addTarefaUseCase.Execute(novaTarefa);
+            var tarefa = await _addTarefaUseCase.Execute(request);
 
-            return Ok(tarefa);
+            return Ok(new { Message = "Tarefa criada com sucesso!", Data = tarefa });
         }
 
         [HttpGet("{id}")]
