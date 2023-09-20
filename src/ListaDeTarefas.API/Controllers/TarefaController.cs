@@ -47,7 +47,7 @@ namespace ListaDeTarefas.API.Controllers
             try
             {
                 var tarefa = await _getByIdTarefaUseCase.Execute(id);
-                return Ok(tarefa);
+                return Ok(new { Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
