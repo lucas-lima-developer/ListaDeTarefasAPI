@@ -60,7 +60,7 @@ namespace ListaDeTarefas.API.Controllers
         {
             var tarefas = await _getAllTarefaUseCase.Execute();
 
-            return Ok(tarefas);
+            return Ok(new { Data = tarefas });
         }
 
         [HttpPut("atualizar/{id}")]
