@@ -63,13 +63,13 @@ namespace ListaDeTarefas.API.Controllers
             return Ok(new { Data = tarefas });
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> UpdateTarefa(long id, [FromBody] Tarefa updatedTarefa)
+        [HttpPut("atualizar")]
+        public async Task<ActionResult<Tarefa>> UpdateTarefa([FromBody] UpdateTarefaRequest updatedTarefa)
         {
             try
             {
-                await _updateTarefaUseCase.Execute(id, updatedTarefa);
-                return Ok("Tarefa atualizada com sucesso.");
+                var tarefa = await _updateTarefaUseCase.Execute(updatedTarefa);
+                return Ok(new { Message = "Tarefa atualizada com sucesso.", Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
