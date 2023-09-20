@@ -9,9 +9,9 @@ namespace ListaDeTarefas.Domain.Entities
     {
         public string? Title { get; set; }
         public string? Description { get;  set; }
-        public bool IsCompleted { get; set; } = false;
-        public DateTime? CompletionDate { get; set; }
         public DateTime? LimitDate { get; set; }
         public Priority Priority { get; set; }
+        public bool IsCompleted { get; set; } = false;
+        public DateTime? CompletionDate { get; set; }
     }
 }

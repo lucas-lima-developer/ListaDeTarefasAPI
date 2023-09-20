@@ -1,5 +1,4 @@
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
-using ListaDeTarefas.Application.UseCases.TarefaUseCase.Complete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
@@ -13,32 +12,30 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
-        
+
         private readonly IAddTarefaUseCase _addTarefaUseCase;
         private readonly IGetAllTarefaUseCase _getAllTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
-        private readonly ICompleteTarefaUseCase _completeTarefaUseCase;
+        
         public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
-            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase
-            , ICompleteTarefaUseCase completeTarefaUseCase)
+            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase)
         {
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
-            _completeTarefaUseCase = completeTarefaUseCase;
         }
 
         [HttpPost]
         [Route("adicionar")]
-        public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] Tarefa novaTarefa)
+        public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] AddTarefaRequest request)
         {
-            var tarefa = await _addTarefaUseCase.Execute(novaTarefa);
+            var tarefa = await _addTarefaUseCase.Execute(request);
 
-            return Ok(tarefa);
+            return Ok(new { Message = "Tarefa criada com sucesso!", Data = tarefa });
         }
 
         [HttpGet("{id}")]
@@ -47,7 +44,7 @@ namespace ListaDeTarefas.API.Controllers
             try
             {
                 var tarefa = await _getByIdTarefaUseCase.Execute(id);
-                return Ok(tarefa);
+                return Ok(new { Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -60,29 +57,16 @@ namespace ListaDeTarefas.API.Controllers
         {
             var tarefas = await _getAllTarefaUseCase.Execute();
 
-            return Ok(tarefas);
+            return Ok(new { Data = tarefas });
         }
 
-        [HttpPut("atualizar/{id}")]
-        public async Task<IActionResult> UpdateTarefa(long id, [FromBody] Tarefa updatedTarefa)
+        [HttpPut("atualizar")]
+        public async Task<ActionResult<Tarefa>> UpdateTarefa([FromBody] UpdateTarefaRequest updatedTarefa)
         {
             try
             {
-                await _updateTarefaUseCase.Execute(id, updatedTarefa);
-                return Ok("Tarefa atualizada com sucesso.");
-            } catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut("completar/{id}")]
-        public async Task<IActionResult> SetCompletedTarefa(long id)
-        {
-            try
-            {
-                await _completeTarefaUseCase.Execute(id);
-                return Ok("Tarefa completada com sucesso.");
+                var tarefa = await _updateTarefaUseCase.Execute(updatedTarefa);
+                return Ok(new { Message = "Tarefa atualizada com sucesso.", Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -90,12 +74,12 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpDelete("deletar/{id}")]
-        public async Task<IActionResult> DeleteTarefa(long id)
+        public async Task<ActionResult<Tarefa>> DeleteTarefa(long id)
         {
             try
             {
-                await _deleteTarefaUseCase.Execute(id);
-                return Ok("Tarefa deletada com sucesso.");
+                var tarefa = await _deleteTarefaUseCase.Execute(id);
+                return Ok(new { Message = "Tarefa deletada com sucesso.", Data = tarefa });
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);

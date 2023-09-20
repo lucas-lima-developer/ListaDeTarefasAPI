@@ -15,11 +15,25 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Add
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Tarefa> Execute(Tarefa novaTarefa)
+        public async Task<Tarefa> Execute(AddTarefaRequest requestNewTarefa)
         {
-            _tarefaRepository.Create(novaTarefa);
+            var newTarefa = ConvertRequest(requestNewTarefa);
+
+            _tarefaRepository.Create(newTarefa);
             await _unitOfWork.Commit();
-            return novaTarefa;
+
+            return newTarefa;
+        }
+
+        public static Tarefa ConvertRequest(AddTarefaRequest requestNewTarefa)
+        {
+            var newTarefa = new Tarefa();
+            newTarefa.Title = requestNewTarefa.Title;
+            newTarefa.Description = requestNewTarefa.Description;
+            newTarefa.Priority = requestNewTarefa.Priority;
+            newTarefa.LimitDate = requestNewTarefa.LimitDate;
+
+            return newTarefa;
         }
     }
 }

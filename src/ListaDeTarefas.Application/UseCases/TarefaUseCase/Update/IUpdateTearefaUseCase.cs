@@ -4,6 +4,6 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Update
 {
     public interface IUpdateTearefaUseCase
     {
-        Task Execute(long id, Tarefa tarefa);
+        Task<Tarefa> Execute(UpdateTarefaRequest tarefa);
     }
 }

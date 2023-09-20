@@ -13,19 +13,30 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Update
             _tarefaRepository = tarefaRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task Execute(long id, Tarefa updatedTarefa)
+        public async Task<Tarefa> Execute(UpdateTarefaRequest updatedTarefaRequest)
         {
-            var tarefaExistente = await _tarefaRepository.Get(id);
+            var tarefaExistente = await _tarefaRepository.Get(updatedTarefaRequest.Id);
 
             if (tarefaExistente != null)
             {
-                tarefaExistente.Title = updatedTarefa.Title;
-                tarefaExistente.Description = updatedTarefa.Description;
-                tarefaExistente.Priority = updatedTarefa.Priority;
+                tarefaExistente.Title = updatedTarefaRequest.Title;
+                tarefaExistente.Description = updatedTarefaRequest.Description;
+                tarefaExistente.Priority = updatedTarefaRequest.Priority;
+                tarefaExistente.IsCompleted = updatedTarefaRequest.IsCompleted;
+
+                if (updatedTarefaRequest.IsCompleted)
+                {
+                    tarefaExistente.CompletionDate = DateTime.Now;
+                } else
+                {
+                    tarefaExistente.CompletionDate = null;
+                }
                 
                 _tarefaRepository.Update(tarefaExistente);
                 await _unitOfWork.Commit();
             }
+
+            return tarefaExistente!;
         }
     }
 }
