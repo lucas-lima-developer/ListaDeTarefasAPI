@@ -1,4 +1,5 @@
-﻿using ListaDeTarefas.Domain.Interfaces;
+﻿using ListaDeTarefas.Domain.Entities;
+using ListaDeTarefas.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,17 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(long tarefaId)
+        public async Task<Tarefa> Execute(long tarefaId)
         {
             var tarefa = await _tarefaRepository.Get(tarefaId);
+
             if (tarefa != null) 
             {
                 _tarefaRepository.Delete(tarefa);
                 await _unitOfWork.Commit();
             }
+
+            return tarefa!;
         }
     }
 }
