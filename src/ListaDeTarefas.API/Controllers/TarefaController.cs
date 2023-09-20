@@ -1,5 +1,4 @@
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
-using ListaDeTarefas.Application.UseCases.TarefaUseCase.Complete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
@@ -13,23 +12,21 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
-        
+
         private readonly IAddTarefaUseCase _addTarefaUseCase;
         private readonly IGetAllTarefaUseCase _getAllTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
-        private readonly ICompleteTarefaUseCase _completeTarefaUseCase;
+        
         public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
-            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase
-            , ICompleteTarefaUseCase completeTarefaUseCase)
+            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase)
         {
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
-            _completeTarefaUseCase = completeTarefaUseCase;
         }
 
         [HttpPost]
@@ -70,19 +67,6 @@ namespace ListaDeTarefas.API.Controllers
             {
                 var tarefa = await _updateTarefaUseCase.Execute(updatedTarefa);
                 return Ok(new { Message = "Tarefa atualizada com sucesso.", Data = tarefa });
-            } catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut("completar/{id}")]
-        public async Task<IActionResult> SetCompletedTarefa(long id)
-        {
-            try
-            {
-                await _completeTarefaUseCase.Execute(id);
-                return Ok("Tarefa completada com sucesso.");
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);

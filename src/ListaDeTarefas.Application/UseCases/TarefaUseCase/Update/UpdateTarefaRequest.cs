@@ -9,5 +9,6 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Update
         public string? Description { get; set; }
         public DateTime? LimitDate { get; set; }
         public Priority Priority { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

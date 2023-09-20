@@ -22,6 +22,15 @@ namespace ListaDeTarefas.Application.UseCases.TarefaUseCase.Update
                 tarefaExistente.Title = updatedTarefaRequest.Title;
                 tarefaExistente.Description = updatedTarefaRequest.Description;
                 tarefaExistente.Priority = updatedTarefaRequest.Priority;
+                tarefaExistente.IsCompleted = updatedTarefaRequest.IsCompleted;
+
+                if (updatedTarefaRequest.IsCompleted)
+                {
+                    tarefaExistente.CompletionDate = DateTime.Now;
+                } else
+                {
+                    tarefaExistente.CompletionDate = null;
+                }
                 
                 _tarefaRepository.Update(tarefaExistente);
                 await _unitOfWork.Commit();
