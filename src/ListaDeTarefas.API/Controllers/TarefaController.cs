@@ -1,3 +1,4 @@
+using FluentValidation;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
@@ -18,21 +19,36 @@ namespace ListaDeTarefas.API.Controllers
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
-        
+
+        private readonly IValidator<AddTarefaRequest> _addTarefaRequestValidator;
+        private readonly IValidator<UpdateTarefaRequest> _updateTarefaRequestValidator;
+
         public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
-            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase, IUpdateTearefaUseCase updateTearefaUseCase)
+            , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase
+            , IUpdateTearefaUseCase updateTearefaUseCase, IValidator<AddTarefaRequest> addTarefaRequestValidator
+            , IValidator<UpdateTarefaRequest> updateTarefaRequestValidator)
         {
             _addTarefaUseCase = addTarefaUseCase;
             _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
+
+            _addTarefaRequestValidator = addTarefaRequestValidator;
+            _updateTarefaRequestValidator = updateTarefaRequestValidator;
         }
 
         [HttpPost]
         [Route("adicionar")]
         public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] AddTarefaRequest request)
         {
+            var validationResult = await _addTarefaRequestValidator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
             var tarefa = await _addTarefaUseCase.Execute(request);
 
             return Ok(new { Message = "Tarefa criada com sucesso!", Data = tarefa });
@@ -63,6 +79,13 @@ namespace ListaDeTarefas.API.Controllers
         [HttpPut("atualizar")]
         public async Task<ActionResult<Tarefa>> UpdateTarefa([FromBody] UpdateTarefaRequest updatedTarefa)
         {
+            var validationResult = await _updateTarefaRequestValidator.ValidateAsync(updatedTarefa);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
             try
             {
                 var tarefa = await _updateTarefaUseCase.Execute(updatedTarefa);
