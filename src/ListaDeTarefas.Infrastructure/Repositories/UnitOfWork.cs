@@ -18,6 +18,11 @@ namespace ListaDeTarefas.Infrastructure.Repositories
              await _context.SaveChangesAsync();
         }
 
+        public async Task Commit(CancellationToken cancellationToken)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         public void Dispose()
         {
             Dispose(true);
