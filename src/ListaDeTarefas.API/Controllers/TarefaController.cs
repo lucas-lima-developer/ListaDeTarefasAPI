@@ -1,7 +1,7 @@
 using FluentValidation;
-using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
+using ListaDeTarefas.Application.UseCases.AddTarefa;
+using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
-using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Update;
 using ListaDeTarefas.Domain.Entities;
@@ -16,43 +16,39 @@ namespace ListaDeTarefas.API.Controllers
     {
         private readonly IMediator _mediator;
 
-        private readonly IAddTarefaUseCase _addTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
 
-        private readonly IValidator<AddTarefaRequest> _addTarefaRequestValidator;
         private readonly IValidator<UpdateTarefaRequest> _updateTarefaRequestValidator;
 
-        public TarefaController(IMediator mediator, IAddTarefaUseCase addTarefaUseCase
+        public TarefaController(IMediator mediator
             , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase
-            , IUpdateTearefaUseCase updateTearefaUseCase, IValidator<AddTarefaRequest> addTarefaRequestValidator
+            , IUpdateTearefaUseCase updateTearefaUseCase
             , IValidator<UpdateTarefaRequest> updateTarefaRequestValidator)
         {
             _mediator = mediator;
-            _addTarefaUseCase = addTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
 
-            _addTarefaRequestValidator = addTarefaRequestValidator;
             _updateTarefaRequestValidator = updateTarefaRequestValidator;
         }
 
-        [HttpPost]
-        [Route("adicionar")]
-        public async Task<ActionResult<Tarefa>> AddTarefa([FromBody] AddTarefaRequest request)
+        [HttpGet]
+        public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAll(CancellationToken cancellationToken)
         {
-            var validationResult = await _addTarefaRequestValidator.ValidateAsync(request);
+            var response = await _mediator.Send(new GetAllTarefaRequest(), cancellationToken);
 
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(validationResult.Errors);
-            }
+            return Ok(response);
+        }
 
-            var tarefa = await _addTarefaUseCase.Execute(request);
+        [HttpPost]
+        public async Task<ActionResult<CreateTarefaResponse>> Create(CreateTarefaRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _mediator.Send(request, cancellationToken);
 
-            return Ok(new { Message = "Tarefa criada com sucesso!", Data = tarefa });
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -68,14 +64,6 @@ namespace ListaDeTarefas.API.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("todas")]
-        public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAllTarefas(CancellationToken cancellationToken)
-        {
-            var response = await _mediator.Send(new GetAllTarefaRequest(), cancellationToken);
-
-            return Ok(response);
-        }
 
         [HttpPut("atualizar")]
         public async Task<ActionResult<Tarefa>> UpdateTarefa([FromBody] UpdateTarefaRequest updatedTarefa)
