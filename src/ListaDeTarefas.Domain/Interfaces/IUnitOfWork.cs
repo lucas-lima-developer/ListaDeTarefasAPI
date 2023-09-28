@@ -3,5 +3,6 @@
     public interface IUnitOfWork
     {
         Task Commit();
+        Task Commit(CancellationToken cancellationToken);
     }
 }
