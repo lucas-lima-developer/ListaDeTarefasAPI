@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using ListaDeTarefas.Application.Shared.Behavior;
-using ListaDeTarefas.Application.UseCases.TarefaUseCase.Add;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Delete;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Update;
@@ -25,7 +24,6 @@ namespace ListaDeTarefas.Application
 
         private static void AddUseCases(IServiceCollection service)
         {
-            service.AddScoped<IAddTarefaUseCase, AddTarefaUseCase>();
             service.AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>();
             service.AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>();
             service.AddScoped<IUpdateTearefaUseCase, UpdateTarefaUseCase>();
@@ -33,7 +31,6 @@ namespace ListaDeTarefas.Application
 
         private static void AddValidators(IServiceCollection services)
         {
-            services.AddTransient<IValidator<AddTarefaRequest>, AddTarefaRequestValidator>();
             services.AddTransient<IValidator<UpdateTarefaRequest>, UpdateTarefaRequestValidator>();
         }
     }
