@@ -5,6 +5,7 @@ using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetAll;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.GetById;
 using ListaDeTarefas.Application.UseCases.TarefaUseCase.Update;
 using ListaDeTarefas.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.API.Controllers
@@ -13,9 +14,9 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
+        private readonly IMediator _mediator;
 
         private readonly IAddTarefaUseCase _addTarefaUseCase;
-        private readonly IGetAllTarefaUseCase _getAllTarefaUseCase;
         private readonly IDeleteTarefaUseCase _deleteTarefaUseCase;
         private readonly IGetByIdTarefaUseCase _getByIdTarefaUseCase;
         private readonly IUpdateTearefaUseCase _updateTarefaUseCase;
@@ -23,13 +24,13 @@ namespace ListaDeTarefas.API.Controllers
         private readonly IValidator<AddTarefaRequest> _addTarefaRequestValidator;
         private readonly IValidator<UpdateTarefaRequest> _updateTarefaRequestValidator;
 
-        public TarefaController(IAddTarefaUseCase addTarefaUseCase, IGetAllTarefaUseCase getAllTarefaUseCase
+        public TarefaController(IMediator mediator, IAddTarefaUseCase addTarefaUseCase
             , IDeleteTarefaUseCase deleteTarefaUseCase, IGetByIdTarefaUseCase getByIdTarefaUseCase
             , IUpdateTearefaUseCase updateTearefaUseCase, IValidator<AddTarefaRequest> addTarefaRequestValidator
             , IValidator<UpdateTarefaRequest> updateTarefaRequestValidator)
         {
+            _mediator = mediator;
             _addTarefaUseCase = addTarefaUseCase;
-            _getAllTarefaUseCase = getAllTarefaUseCase;
             _deleteTarefaUseCase = deleteTarefaUseCase;
             _getByIdTarefaUseCase = getByIdTarefaUseCase;
             _updateTarefaUseCase = updateTearefaUseCase;
@@ -69,11 +70,11 @@ namespace ListaDeTarefas.API.Controllers
 
         [HttpGet]
         [Route("todas")]
-        public async Task<ActionResult<List<Tarefa>>> GetAllTarefas()
+        public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAllTarefas(CancellationToken cancellationToken)
         {
-            var tarefas = await _getAllTarefaUseCase.Execute();
+            var response = await _mediator.Send(new GetAllTarefaRequest(), cancellationToken);
 
-            return Ok(new { Data = tarefas });
+            return Ok(response);
         }
 
         [HttpPut("atualizar")]

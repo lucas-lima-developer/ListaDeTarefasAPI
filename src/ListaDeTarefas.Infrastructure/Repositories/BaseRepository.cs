@@ -44,7 +44,7 @@ namespace ListaDeTarefas.Infrastructure.Repositories
             return t;
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAll(CancellationToken cancellationToken)
         {
             return await Context.Set<T>().ToListAsync();
         }

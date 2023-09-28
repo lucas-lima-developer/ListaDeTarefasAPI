@@ -8,7 +8,7 @@ namespace ListaDeTarefas.Domain.Interfaces
         void Update(T entity);
         void Delete(T entity);
         Task<T> Get(long id);
-        Task<List<T>> GetAll();
+        Task<List<T>> GetAll(CancellationToken cancellationToken);
 
     }
 }
