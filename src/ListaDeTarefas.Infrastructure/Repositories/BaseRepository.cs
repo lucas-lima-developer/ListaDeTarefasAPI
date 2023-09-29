@@ -32,9 +32,9 @@ namespace ListaDeTarefas.Infrastructure.Repositories
             Context.Remove(entity);
         }
 
-        public async Task<T> Get(long id)
+        public async Task<T> GetById(long id, CancellationToken cancellationToken)
         {
-            var t = await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            var t = await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 
             if (t == null)
             {
