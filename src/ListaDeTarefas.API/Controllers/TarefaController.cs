@@ -1,4 +1,5 @@
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
+using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
@@ -49,6 +50,16 @@ namespace ListaDeTarefas.API.Controllers
         {
             if (id != request.Id) 
                 return BadRequest();
+
+            var response = await _mediator.Send(request, cancellationToken);
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<DeleteTarefaResponse>> Delete(long id, CancellationToken cancellationToken)
+        {
+            var request = new DeleteTarefaRequest(id);
 
             var response = await _mediator.Send(request, cancellationToken);
 
