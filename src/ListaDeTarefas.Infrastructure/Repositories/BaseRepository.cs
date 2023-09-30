@@ -36,11 +36,6 @@ namespace ListaDeTarefas.Infrastructure.Repositories
         {
             var t = await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 
-            if (t == null)
-            {
-                throw new Exception("entidade não encontrada");
-            }
-
             return t;
         }
 
