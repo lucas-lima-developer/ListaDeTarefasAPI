@@ -5,7 +5,7 @@ using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
 using MediatR;
 
-namespace ListaDeTarefas.Application.UseCases.AddTarefa
+namespace ListaDeTarefas.Application.UseCases.CreateTarefa
 {
     public sealed class CreateTarefaHandler : IRequestHandler<CreateTarefaRequest, CreateTarefaResponse>
     {

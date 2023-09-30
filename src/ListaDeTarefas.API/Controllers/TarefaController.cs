@@ -1,4 +1,4 @@
-using ListaDeTarefas.Application.UseCases.AddTarefa;
+using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Domain.Entities;
