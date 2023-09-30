@@ -1,6 +1,7 @@
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
+using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using ListaDeTarefas.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,17 @@ namespace ListaDeTarefas.API.Controllers
         [HttpPost]
         public async Task<ActionResult<CreateTarefaResponse>> Create(CreateTarefaRequest request, CancellationToken cancellationToken)
         {
+            var response = await _mediator.Send(request, cancellationToken);
+
+            return Ok(response);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdateTarefaResponse>> Update(long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
+        {
+            if (id != request.Id) 
+                return BadRequest();
+
             var response = await _mediator.Send(request, cancellationToken);
 
             return Ok(response);
