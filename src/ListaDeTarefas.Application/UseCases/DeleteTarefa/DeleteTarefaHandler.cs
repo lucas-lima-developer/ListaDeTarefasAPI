@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
@@ -47,12 +48,20 @@ namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
         public DateTime? DateUpdated { get; set; }
     }
 
-    public sealed class DeleteUserMapper : Profile
+    public sealed class DeleteTarefaMapper : Profile
     {
-        public DeleteUserMapper()
+        public DeleteTarefaMapper()
         {
             CreateMap<DeleteTarefaRequest, Tarefa>();
             CreateMap<Tarefa, DeleteTarefaResponse>();
+        }
+    }
+
+    public class DeleteTarefaValidator : AbstractValidator<DeleteTarefaRequest>
+    {
+        public DeleteTarefaValidator()
+        {
+            RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
         }
     }
 }
