@@ -32,7 +32,7 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
         }
     }
 
-    public sealed record CreateTarefaRequest(string Title, string Description, DateTime LimiteDate, Priority Priority) : IRequest<CreateTarefaResponse>;
+    public sealed record CreateTarefaRequest(string Title, string Description, DateTime LimitDate, Priority Priority) : IRequest<CreateTarefaResponse>;
 
     public class CreateTarefaResponse
     {
@@ -62,7 +62,7 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
         {
             RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
-            RuleFor(x => x.LimiteDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
+            RuleFor(x => x.LimitDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
             RuleFor(x => x.Priority).NotNull();
         }
     }
