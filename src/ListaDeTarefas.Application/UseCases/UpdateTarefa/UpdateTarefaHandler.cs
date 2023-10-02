@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
@@ -58,6 +59,18 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
         {
             CreateMap<UpdateTarefaRequest, Tarefa>();
             CreateMap<Tarefa, UpdateTarefaResponse>();
+        }
+    }
+
+    public class UpdateTarefaValidator : AbstractValidator<UpdateTarefaRequest>
+    {
+        public UpdateTarefaValidator()
+        {
+            RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
+            RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
+            RuleFor(x => x.LimitDate).NotEmpty();
+            RuleFor(x => x.Priority).NotEmpty();
         }
     }
 }
