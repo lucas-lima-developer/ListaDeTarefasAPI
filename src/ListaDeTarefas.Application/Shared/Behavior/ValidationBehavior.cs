@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using ListaDeTarefas.Application.Exceptions;
 using MediatR;
 
 namespace ListaDeTarefas.Application.Shared.Behavior
@@ -26,7 +27,9 @@ namespace ListaDeTarefas.Application.Shared.Behavior
 
                 if (failures.Count != 0)
                 {
-                    throw new FluentValidation.ValidationException(failures);
+                    var errorMessages = failures.Select(failure => failure.ErrorMessage);
+
+                    throw new ValidationErrorException(errorMessages);
                 }
             }
 
