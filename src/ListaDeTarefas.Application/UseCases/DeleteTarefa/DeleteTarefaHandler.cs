@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
@@ -24,7 +25,7 @@ namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
         {
             var tarefa = await _tarefaRepository.GetById(request.Id, cancellationToken);
 
-            if (tarefa == null) return default;
+            if (tarefa == null) throw new TarefaNotFoundException(request.Id);
 
             _tarefaRepository.Delete(tarefa);
             await _unitOfWork.Commit(cancellationToken);
