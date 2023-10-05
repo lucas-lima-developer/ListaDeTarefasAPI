@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
@@ -21,6 +22,9 @@ namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
         public async Task<GetByIdTarefaResponse> Handle(GetByIdTarefaRequest request, CancellationToken cancellationToken)
         {
             var tarefa = await _tarefaRepository.GetById(request.Id, cancellationToken);
+
+            if (tarefa == null) throw new TarefaNotFoundException(request.Id);
+            
             return _mapper.Map<GetByIdTarefaResponse>(tarefa);
         }
     }
