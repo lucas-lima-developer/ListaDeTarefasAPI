@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
@@ -21,6 +22,9 @@ namespace ListaDeTarefas.Application.UseCases.GetAllTarefa
         public async Task<List<GetAllTarefaResponse>> Handle(GetAllTarefaRequest request, CancellationToken cancellationToken)
         {
             var tarefas = await _tarefaRepository.GetAll(cancellationToken);
+
+            if (tarefas.Count == 0) throw new TarefaNotFoundException("Nenhuma tarefa encontrada.");
+
             return _mapper.Map<List<GetAllTarefaResponse>>(tarefas);
         }
     }
