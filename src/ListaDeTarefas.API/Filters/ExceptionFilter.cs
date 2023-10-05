@@ -10,7 +10,7 @@ namespace ListaDeTarefas.API.Filters
         public void OnException(ExceptionContext context)
         {
             Error error;
-            if (context.Exception is FluentValidation.ValidationException)
+            if (context.Exception is ValidationErrorException)
             {
                 error = new Error
                 {
