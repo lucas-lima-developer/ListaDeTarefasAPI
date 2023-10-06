@@ -48,8 +48,7 @@ namespace ListaDeTarefas.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<UpdateTarefaResponse>> Update(long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
         {
-            if (id != request.Id) 
-                return BadRequest();
+            request.IdParam = id;
 
             var response = await _mediator.Send(request, cancellationToken);
 
