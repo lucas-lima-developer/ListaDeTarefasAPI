@@ -2,7 +2,6 @@
 using FluentValidation;
 using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Domain.Entities;
-using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
 using MediatR;
 
@@ -42,7 +41,7 @@ namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
         public string? Title { get; set; }
         public string? Description { get; set; }
         public DateTime? LimitDate { get; set; }
-        public Priority? Priority { get; set; }
+        public string? Priority { get; set; }
         public bool? IsCompleted { get; set; }
         public DateTime? CompletionDate { get; set; }
         public DateTime? DateCreated { get; set; }
