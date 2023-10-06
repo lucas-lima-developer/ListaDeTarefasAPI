@@ -1,5 +1,4 @@
-﻿using ListaDeTarefas.Domain.Enum;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ListaDeTarefas.Domain.Entities
 {
@@ -10,7 +9,7 @@ namespace ListaDeTarefas.Domain.Entities
         public string? Title { get; set; }
         public string? Description { get;  set; }
         public DateTime? LimitDate { get; set; }
-        public Priority Priority { get; set; }
+        public string? Priority { get; set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime? CompletionDate { get; set; }
     }

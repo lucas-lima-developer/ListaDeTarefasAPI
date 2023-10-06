@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using ListaDeTarefas.Domain.Entities;
-using ListaDeTarefas.Domain.Enum;
 using ListaDeTarefas.Domain.Interfaces;
 using MediatR;
 
@@ -32,7 +31,7 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
         }
     }
 
-    public sealed record CreateTarefaRequest(string Title, string Description, DateTime LimitDate, Priority Priority) : IRequest<CreateTarefaResponse>;
+    public sealed record CreateTarefaRequest(string Title, string Description, DateTime LimitDate, string Priority) : IRequest<CreateTarefaResponse>;
 
     public class CreateTarefaResponse
     {
@@ -40,7 +39,7 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
         public string? Title { get; set; }
         public string? Description { get; set; }
         public DateTime? LimitDate { get; set; }
-        public Priority? Priority { get; set; }
+        public string? Priority { get; set; }
         public bool? IsCompleted { get; set; }
         public DateTime? CompletionDate { get; set; }
         public DateTime? DateCreated { get; set; }
