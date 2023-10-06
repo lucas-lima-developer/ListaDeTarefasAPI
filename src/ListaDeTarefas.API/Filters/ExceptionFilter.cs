@@ -9,35 +9,21 @@ namespace ListaDeTarefas.API.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            Error error;
+            Error error = new Error(context.Exception.Message);
+
             if (context.Exception is ValidationErrorException)
             {
-                error = new Error
-                {
-                    StatusCode = "400",
-                    Message = context.Exception.Message,
-                };
-
+                error.StatusCode = "400";
                 context.Result = new JsonResult(error) { StatusCode = 400 };
             }
             else if (context.Exception is TarefaNotFoundException)
             {
-                error = new Error
-                {
-                    StatusCode = "404",
-                    Message = context.Exception.Message,
-                };
-
+                error.StatusCode = "404";
                 context.Result = new JsonResult(error) { StatusCode = 404 };
             }
             else
             {
-                error = new Error
-                {
-                    StatusCode = "500",
-                    Message = context.Exception.Message,
-                };
-
+                error.StatusCode = "500";
                 context.Result = new JsonResult(error) { StatusCode = 500 };
             }
         }
