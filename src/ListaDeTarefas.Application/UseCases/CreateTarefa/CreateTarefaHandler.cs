@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ListaDeTarefas.Application.Helpers;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Interfaces;
 using MediatR;
@@ -62,7 +63,7 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
             RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
             RuleFor(x => x.LimitDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
-            RuleFor(x => x.Priority).NotNull();
+            RuleFor(x => x.Priority).NotEmpty().Must(ValidationHelper.BeAValidPriority).WithMessage("A prioridade deve ser baixa, média ou alta.");
         }
     }
 }
