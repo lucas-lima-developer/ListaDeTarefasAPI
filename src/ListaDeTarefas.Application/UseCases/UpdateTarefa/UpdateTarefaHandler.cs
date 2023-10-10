@@ -67,7 +67,9 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
     {
         public UpdateTarefaValidator()
         {
-            RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.Id)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.ID_EMPTY)
+                .GreaterThan(0).WithMessage(Exceptions.Resources.ErrorMessages.ID_GREATER_THAN_0);
             RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
             RuleFor(x => x.LimitDate).NotEmpty();
