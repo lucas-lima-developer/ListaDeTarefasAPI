@@ -4,9 +4,11 @@ using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
+using ListaDeTarefas.Application.Helpers;
 using ListaDeTarefas.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace ListaDeTarefas.API.Controllers
 {
@@ -51,7 +53,7 @@ namespace ListaDeTarefas.API.Controllers
         {
             if (id != request.Id)
             {
-                throw new ValidationErrorException("O Id no body deve ser igual ao id no path.");
+                throw new ValidationErrorException(Application.Exceptions.Resources.ErrorMessages.ID_PARAM_NOT_EQUAL_ID_BODY);
             }
 
             var response = await _mediator.Send(request, cancellationToken);

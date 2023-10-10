@@ -18,4 +18,19 @@
     <ProjectReference Include="..\ListaDeTarefas.Infrastructure\ListaDeTarefas.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Exceptions\Resources\ErrorMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Exceptions\Resources\ErrorMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
