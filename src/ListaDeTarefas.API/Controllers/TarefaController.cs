@@ -1,3 +1,4 @@
+using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
@@ -48,7 +49,10 @@ namespace ListaDeTarefas.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<UpdateTarefaResponse>> Update(long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
         {
-            request.IdParam = id;
+            if (id != request.Id)
+            {
+                throw new ValidationErrorException("O Id no body deve ser igual ao id no path.");
+            }
 
             var response = await _mediator.Send(request, cancellationToken);
 

@@ -39,10 +39,7 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
 
     public sealed record UpdateTarefaRequest
         (long Id, string Title, string Description, DateTime LimitDate
-        , string? Priority) : IRequest<UpdateTarefaResponse>
-    {
-        public long IdParam { get; set; } = 0;
-    }
+        , string? Priority) : IRequest<UpdateTarefaResponse>;
 
     public class UpdateTarefaResponse
     {
@@ -70,7 +67,6 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
     {
         public UpdateTarefaValidator()
         {
-            RuleFor(x => x.Id).NotNull().Equal(x => x.IdParam).WithMessage("O Id no body deve ser igual ao id no path.");
             RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
             RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
             RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
