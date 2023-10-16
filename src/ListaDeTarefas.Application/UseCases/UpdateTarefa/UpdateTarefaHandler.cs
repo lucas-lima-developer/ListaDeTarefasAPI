@@ -70,10 +70,20 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
             RuleFor(x => x.Id)
                 .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.ID_EMPTY)
                 .GreaterThan(0).WithMessage(Exceptions.Resources.ErrorMessages.ID_GREATER_THAN_0);
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
-            RuleFor(x => x.LimitDate).NotEmpty();
-            RuleFor(x => x.Priority).NotEmpty().Must(ValidationHelper.BeAValidPriority!).WithMessage("A prioridade deve ser baixa, média ou alta.");
+
+            RuleFor(x => x.Title)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TITLE_NOT_EMPTY)
+                .MaximumLength(50).WithMessage(Exceptions.Resources.ErrorMessages.TITLE_MAX_LENGTH);
+
+            RuleFor(x => x.Description)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_NOT_EMPTY)
+                .MaximumLength(150).WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_MAX_LENGTH);
+
+            RuleFor(x => x.LimitDate)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.LIMITDATE_NOT_EMPTY);
+
+            RuleFor(x => x.Priority).NotEmpty()
+                .Must(ValidationHelper.BeAValidPriority!).WithMessage(Exceptions.Resources.ErrorMessages.PRIORITY_RANK);
         }
     }
 }
