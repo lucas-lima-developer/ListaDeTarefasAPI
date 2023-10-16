@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DESCRIPTION_MAX_LENGTH" xml:space="preserve">
+    <value>A descrição não deve ter mais de 150 caracteres.</value>
+  </data>
+  <data name="DESCRIPTION_NOT_EMPTY" xml:space="preserve">
+    <value>A descrição não pode ser vazia.</value>
+  </data>
   <data name="ID_EMPTY" xml:space="preserve">
     <value>O ID não pode ser vazio.</value>
   </data>
@@ -125,5 +131,23 @@
   </data>
   <data name="ID_PARAM_NOT_EQUAL_ID_BODY" xml:space="preserve">
     <value>O ID passado no parâmetro deve ser igual ao ID do body.</value>
+  </data>
+  <data name="LIMITDATE_GREATHER_THAN_NOW" xml:space="preserve">
+    <value>A data limite deve ser maior que a data atual.</value>
+  </data>
+  <data name="LIMITDATE_NOT_EMPTY" xml:space="preserve">
+    <value>A data limite não pode ser vazia.</value>
+  </data>
+  <data name="PRIORITY_NOT_EMPTY" xml:space="preserve">
+    <value>A prioridade não pode ser vazia.</value>
+  </data>
+  <data name="PRIORITY_RANK" xml:space="preserve">
+    <value>A prioridade deve ser baixa, média ou alta.</value>
+  </data>
+  <data name="TITLE_MAX_LENGTH" xml:space="preserve">
+    <value>O título deve ter mais de 50 caracteres.</value>
+  </data>
+  <data name="TITLE_NOT_EMPTY" xml:space="preserve">
+    <value>O título não pode ser vazio.</value>
   </data>
 </root>
