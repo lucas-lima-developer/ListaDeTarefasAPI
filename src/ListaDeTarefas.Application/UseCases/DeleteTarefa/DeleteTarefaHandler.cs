@@ -61,7 +61,9 @@ namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
     {
         public DeleteTarefaValidator()
         {
-            RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.Id)
+                .NotNull().WithMessage(Exceptions.Resources.ErrorMessages.ID_EMPTY)
+                .GreaterThanOrEqualTo(1).WithMessage(Exceptions.Resources.ErrorMessages.ID_GREATER_THAN_0);
         }
     }
 }
