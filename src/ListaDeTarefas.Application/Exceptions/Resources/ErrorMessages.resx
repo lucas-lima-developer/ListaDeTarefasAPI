@@ -132,6 +132,9 @@
   <data name="ID_PARAM_NOT_EQUAL_ID_BODY" xml:space="preserve">
     <value>O ID passado no parâmetro deve ser igual ao ID do body.</value>
   </data>
+  <data name="IS_COMPLETED_NOT_EMPTY" xml:space="preserve">
+    <value>O campo de tarefa completada não pode ser vazio.</value>
+  </data>
   <data name="LIMITDATE_GREATHER_THAN_NOW" xml:space="preserve">
     <value>A data limite deve ser maior que a data atual.</value>
   </data>
