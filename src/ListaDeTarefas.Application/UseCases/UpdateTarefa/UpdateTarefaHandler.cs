@@ -29,6 +29,8 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
 
             _mapper.Map(request, tarefa);
 
+            tarefa.CompletionDate = request.IsCompleted ? DateTime.Now : null;
+
             _tarefaRepository.Update(tarefa);
 
             await _unitOfWorK.Commit(cancellationToken);
@@ -39,7 +41,7 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
 
     public sealed record UpdateTarefaRequest
         (long Id, string Title, string Description, DateTime LimitDate
-        , string? Priority) : IRequest<UpdateTarefaResponse>;
+        , string? Priority, bool IsCompleted) : IRequest<UpdateTarefaResponse>;
 
     public class UpdateTarefaResponse
     {
@@ -82,8 +84,12 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
             RuleFor(x => x.LimitDate)
                 .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.LIMITDATE_NOT_EMPTY);
 
-            RuleFor(x => x.Priority).NotEmpty()
+            RuleFor(x => x.Priority)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.PRIORITY_NOT_EMPTY)
                 .Must(ValidationHelper.BeAValidPriority!).WithMessage(Exceptions.Resources.ErrorMessages.PRIORITY_RANK);
+
+            RuleFor(x => x.IsCompleted)
+                .NotNull().WithMessage(Exceptions.Resources.ErrorMessages.IS_COMPLETED_NOT_EMPTY);
         }
     }
 }

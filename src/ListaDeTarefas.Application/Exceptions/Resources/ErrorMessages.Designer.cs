@@ -106,6 +106,15 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo de tarefa completada não pode ser vazio..
+        /// </summary>
+        public static string IS_COMPLETED_NOT_EMPTY {
+            get {
+                return ResourceManager.GetString("IS_COMPLETED_NOT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a A data limite deve ser maior que a data atual..
         /// </summary>
         public static string LIMITDATE_GREATHER_THAN_NOW {
