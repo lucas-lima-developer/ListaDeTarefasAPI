@@ -4,11 +4,9 @@ using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
-using ListaDeTarefas.Application.Helpers;
 using ListaDeTarefas.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.CompilerServices;
 
 namespace ListaDeTarefas.API.Controllers
 {

@@ -60,10 +60,21 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
     {
         public CreateTarefaValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(50);
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(150);
-            RuleFor(x => x.LimitDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
-            RuleFor(x => x.Priority).NotEmpty().Must(ValidationHelper.BeAValidPriority).WithMessage("A prioridade deve ser baixa, média ou alta.");
+            RuleFor(x => x.Title)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TITLE_NOT_EMPTY)
+                .MaximumLength(50).WithMessage(Exceptions.Resources.ErrorMessages.TITLE_MAX_LENGTH);
+
+            RuleFor(x => x.Description)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_NOT_EMPTY)
+                .MaximumLength(150).WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_MAX_LENGTH);
+
+            RuleFor(x => x.LimitDate)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.LIMITDATE_NOT_EMPTY)
+                .GreaterThanOrEqualTo(DateTime.Now).WithMessage(Exceptions.Resources.ErrorMessages.LIMITDATE_GREATHER_THAN_NOW);
+
+            RuleFor(x => x.Priority)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.PRIORITY_NOT_EMPTY)
+                .Must(ValidationHelper.BeAValidPriority).WithMessage(Exceptions.Resources.ErrorMessages.PRIORITY_RANK);
         }
     }
 }

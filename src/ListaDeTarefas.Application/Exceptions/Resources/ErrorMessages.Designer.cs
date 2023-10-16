@@ -61,6 +61,24 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A descrição não deve ter mais de 150 caracteres..
+        /// </summary>
+        public static string DESCRIPTION_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A descrição não pode ser vazia..
+        /// </summary>
+        public static string DESCRIPTION_NOT_EMPTY {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_NOT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O ID não pode ser vazio..
         /// </summary>
         public static string ID_EMPTY {
@@ -84,6 +102,60 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         public static string ID_PARAM_NOT_EQUAL_ID_BODY {
             get {
                 return ResourceManager.GetString("ID_PARAM_NOT_EQUAL_ID_BODY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A data limite deve ser maior que a data atual..
+        /// </summary>
+        public static string LIMITDATE_GREATHER_THAN_NOW {
+            get {
+                return ResourceManager.GetString("LIMITDATE_GREATHER_THAN_NOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A data limite não pode ser vazia..
+        /// </summary>
+        public static string LIMITDATE_NOT_EMPTY {
+            get {
+                return ResourceManager.GetString("LIMITDATE_NOT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A prioridade não pode ser vazia..
+        /// </summary>
+        public static string PRIORITY_NOT_EMPTY {
+            get {
+                return ResourceManager.GetString("PRIORITY_NOT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A prioridade deve ser baixa, média ou alta..
+        /// </summary>
+        public static string PRIORITY_RANK {
+            get {
+                return ResourceManager.GetString("PRIORITY_RANK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O título deve ter mais de 50 caracteres..
+        /// </summary>
+        public static string TITLE_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("TITLE_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O título não pode ser vazio..
+        /// </summary>
+        public static string TITLE_NOT_EMPTY {
+            get {
+                return ResourceManager.GetString("TITLE_NOT_EMPTY", resourceCulture);
             }
         }
     }
