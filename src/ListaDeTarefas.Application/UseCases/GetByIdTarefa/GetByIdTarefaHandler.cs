@@ -55,7 +55,9 @@ namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
     {
         public GetByIdTarefaValidator()
         {
-            RuleFor(x => x.Id).NotNull().GreaterThanOrEqualTo(1);
+            RuleFor(x => x.Id)
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.ID_EMPTY)
+                .GreaterThanOrEqualTo(1).WithMessage(Exceptions.Resources.ErrorMessages.ID_GREATER_THAN_0);
         }
     }
 }
