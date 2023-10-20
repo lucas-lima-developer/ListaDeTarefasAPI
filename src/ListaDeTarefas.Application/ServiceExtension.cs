@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using ListaDeTarefas.Application.Shared.Behavior;
+using ListaDeTarefas.Application.UseCases.GetAllTarefa;
+using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -14,6 +16,14 @@ namespace ListaDeTarefas.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            AddUseCases(services);
+        }
+
+        private static void AddUseCases(IServiceCollection services)
+        {
+            services
+                .AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>()
+                .AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>();
         }
     }
 }
