@@ -1,3 +1,4 @@
+using ListaDeTarefas.API.Contracts;
 using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
@@ -22,6 +23,8 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<GetAllTarefaResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAll([FromServices] IGetAllTarefaUseCase useCase, CancellationToken cancellationToken)
         {
             var response = await useCase.Execute(cancellationToken);
