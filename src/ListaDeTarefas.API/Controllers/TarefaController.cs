@@ -22,9 +22,9 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAll(CancellationToken cancellationToken)
+        public async Task<ActionResult<List<GetAllTarefaResponse>>> GetAll([FromServices] IGetAllTarefaUseCase useCase, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(new GetAllTarefaRequest(), cancellationToken);
+            var response = await useCase.Execute(cancellationToken);
 
             return Ok(response);
         }
