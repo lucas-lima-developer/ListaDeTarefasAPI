@@ -33,10 +33,11 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tarefa>> GetById(long id, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(GetByIdTarefaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Tarefa>> GetById([FromServices] IGetByIdTarefaUseCase useCase, int id, CancellationToken cancellationToken)
         {
-            var request = new GetByIdTarefaRequest(id);
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(id, cancellationToken);
 
             return Ok(response);
         }
