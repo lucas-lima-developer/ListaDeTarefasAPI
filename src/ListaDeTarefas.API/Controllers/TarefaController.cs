@@ -43,9 +43,11 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateTarefaResponse>> Create(CreateTarefaRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<CreateTarefaResponse>> Create([FromServices] ICreateTarefaUseCase useCase, CreateTarefaRequest request, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(request, cancellationToken);
 
             return Ok(response);
         }
