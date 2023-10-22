@@ -4,6 +4,7 @@ using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
+using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -27,7 +28,8 @@ namespace ListaDeTarefas.Application
                 .AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>()
                 .AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>()
                 .AddScoped<ICreateTarefaUseCase, CreateTarefaUseCase>()
-                .AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>();
+                .AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>()
+                .AddScoped<IUpdateTarefaUseCase, UpdateTarefaUseCase>();
         }
     }
 }

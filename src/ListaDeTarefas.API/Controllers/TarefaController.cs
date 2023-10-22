@@ -53,14 +53,17 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UpdateTarefaResponse>> Update(long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UpdateTarefaResponse>> Update([FromServices] IUpdateTarefaUseCase useCase, long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
         {
             if (id != request.Id)
             {
                 throw new ValidationErrorException(Application.Exceptions.Resources.ErrorMessages.ID_PARAM_NOT_EQUAL_ID_BODY);
             }
 
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(request, cancellationToken);
 
             return Ok(response);
         }
