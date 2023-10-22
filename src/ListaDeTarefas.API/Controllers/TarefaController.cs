@@ -6,7 +6,6 @@ using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using ListaDeTarefas.Domain.Entities;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.API.Controllers
@@ -15,13 +14,6 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public TarefaController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpGet]
         [ProducesResponseType(typeof(List<GetAllTarefaResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
@@ -43,32 +35,37 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateTarefaResponse>> Create(CreateTarefaRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<CreateTarefaResponse>> Create([FromServices] ICreateTarefaUseCase useCase, CreateTarefaRequest request, CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(request, cancellationToken);
 
             return Ok(response);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UpdateTarefaResponse>> Update(long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UpdateTarefaResponse>> Update([FromServices] IUpdateTarefaUseCase useCase, long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
         {
             if (id != request.Id)
             {
                 throw new ValidationErrorException(Application.Exceptions.Resources.ErrorMessages.ID_PARAM_NOT_EQUAL_ID_BODY);
             }
 
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(request, cancellationToken);
 
             return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DeleteTarefaResponse>> Delete(long id, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<DeleteTarefaResponse>> Delete([FromServices] IDeleteTarefaUseCase useCase, int id, CancellationToken cancellationToken)
         {
-            var request = new DeleteTarefaRequest(id);
-
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(id, cancellationToken);
 
             return Ok(response);
         }

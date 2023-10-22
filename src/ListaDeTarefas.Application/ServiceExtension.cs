@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
-using ListaDeTarefas.Application.Shared.Behavior;
+using ListaDeTarefas.Application.UseCases.CreateTarefa;
+using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
-using MediatR;
+using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -13,9 +14,7 @@ namespace ListaDeTarefas.Application
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             AddUseCases(services);
         }
 
@@ -23,7 +22,10 @@ namespace ListaDeTarefas.Application
         {
             services
                 .AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>()
-                .AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>();
+                .AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>()
+                .AddScoped<ICreateTarefaUseCase, CreateTarefaUseCase>()
+                .AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>()
+                .AddScoped<IUpdateTarefaUseCase, UpdateTarefaUseCase>();
         }
     }
 }
