@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using ListaDeTarefas.Application.Shared.Behavior;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
+using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using MediatR;
@@ -25,7 +26,8 @@ namespace ListaDeTarefas.Application
             services
                 .AddScoped<IGetAllTarefaUseCase, GetAllTarefaUseCase>()
                 .AddScoped<IGetByIdTarefaUseCase, GetByIdTarefaUseCase>()
-                .AddScoped<ICreateTarefaUseCase, CreateTarefaUseCase>();
+                .AddScoped<ICreateTarefaUseCase, CreateTarefaUseCase>()
+                .AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>();
         }
     }
 }
