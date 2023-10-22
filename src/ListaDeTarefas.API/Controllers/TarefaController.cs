@@ -6,7 +6,6 @@ using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using ListaDeTarefas.Domain.Entities;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.API.Controllers
@@ -15,13 +14,6 @@ namespace ListaDeTarefas.API.Controllers
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public TarefaController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpGet]
         [ProducesResponseType(typeof(List<GetAllTarefaResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
