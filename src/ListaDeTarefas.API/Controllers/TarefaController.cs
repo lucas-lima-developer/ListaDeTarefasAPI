@@ -66,11 +66,11 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DeleteTarefaResponse>> Delete(long id, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<DeleteTarefaResponse>> Delete([FromServices] IDeleteTarefaUseCase useCase, int id, CancellationToken cancellationToken)
         {
-            var request = new DeleteTarefaRequest(id);
-
-            var response = await _mediator.Send(request, cancellationToken);
+            var response = await useCase.Execute(id, cancellationToken);
 
             return Ok(response);
         }
