@@ -31,7 +31,8 @@ namespace ListaDeTarefas.Application
         private static void AddValidators(IServiceCollection services)
         {
             services
-                .AddScoped<IValidator<CreateTarefaRequest>, CreateTarefaValidator>();
+                .AddScoped<IValidator<CreateTarefaRequest>, CreateTarefaValidator>()
+                .AddScoped<IValidator<UpdateTarefaRequest>, UpdateTarefaValidator>();
         }
     }
 }
