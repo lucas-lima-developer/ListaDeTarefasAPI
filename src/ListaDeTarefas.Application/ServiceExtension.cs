@@ -1,11 +1,11 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace ListaDeTarefas.Application
 {
@@ -13,7 +13,7 @@ namespace ListaDeTarefas.Application
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            AddMapper(services);
             AddValidators(services);
             AddUseCases(services);
         }
@@ -33,6 +33,22 @@ namespace ListaDeTarefas.Application
             services
                 .AddScoped<IValidator<CreateTarefaRequest>, CreateTarefaValidator>()
                 .AddScoped<IValidator<UpdateTarefaRequest>, UpdateTarefaValidator>();
+        }
+
+        private static void AddMapper(IServiceCollection services)
+        {
+            services
+                .AddAutoMapper(cfg =>
+                {
+                    cfg.AddProfiles(new List<Profile>
+                    {
+                        new CreateTarefaMapper(),
+                        new UpdateTarefaMapper(),
+                        new DeleteTarefaMapper(),
+                        new GetByIdTarefaMapper(),
+                        new GetAllTarefaMapper()
+                    });
+                });
         }
     }
 }
