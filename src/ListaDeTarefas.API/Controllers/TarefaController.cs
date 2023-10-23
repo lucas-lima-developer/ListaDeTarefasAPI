@@ -45,7 +45,7 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CreateTarefaResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UpdateTarefaResponse>> Update([FromServices] IUpdateTarefaUseCase useCase, long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
@@ -61,7 +61,8 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DeleteTarefaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<DeleteTarefaResponse>> Delete([FromServices] IDeleteTarefaUseCase useCase, int id, CancellationToken cancellationToken)
         {
