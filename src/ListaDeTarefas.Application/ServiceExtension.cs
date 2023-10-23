@@ -14,7 +14,7 @@ namespace ListaDeTarefas.Application
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            AddValidators(services);
             AddUseCases(services);
         }
 
@@ -26,6 +26,13 @@ namespace ListaDeTarefas.Application
                 .AddScoped<ICreateTarefaUseCase, CreateTarefaUseCase>()
                 .AddScoped<IDeleteTarefaUseCase, DeleteTarefaUseCase>()
                 .AddScoped<IUpdateTarefaUseCase, UpdateTarefaUseCase>();
+        }
+
+        private static void AddValidators(IServiceCollection services)
+        {
+            services
+                .AddScoped<IValidator<CreateTarefaRequest>, CreateTarefaValidator>()
+                .AddScoped<IValidator<UpdateTarefaRequest>, UpdateTarefaValidator>();
         }
     }
 }
