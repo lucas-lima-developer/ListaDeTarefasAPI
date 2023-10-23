@@ -35,7 +35,7 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(CreateTarefaUseCase), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CreateTarefaResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<CreateTarefaResponse>> Create([FromServices] ICreateTarefaUseCase useCase, CreateTarefaRequest request, CancellationToken cancellationToken)
         {
@@ -45,7 +45,7 @@ namespace ListaDeTarefas.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(CreateTarefaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UpdateTarefaResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UpdateTarefaResponse>> Update([FromServices] IUpdateTarefaUseCase useCase, long id, UpdateTarefaRequest request, CancellationToken cancellationToken)
