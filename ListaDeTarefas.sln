@@ -5,15 +5,15 @@ VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3E9E780-EE72-455D-8B2F-E17ACC51F9F4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AA4AE5F8-208F-418B-B3E7-6D43D004C7FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AA4AE5F8-208F-418B-B3E7-6D43D004C7FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListaDeTarefas.Domain", "src\ListaDeTarefas.Domain\ListaDeTarefas.Domain.csproj", "{7388CD56-15DD-4B5F-86DF-003E5C56C4A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.Domain", "src\ListaDeTarefas.Domain\ListaDeTarefas.Domain.csproj", "{7388CD56-15DD-4B5F-86DF-003E5C56C4A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListaDeTarefas.Application", "src\ListaDeTarefas.Application\ListaDeTarefas.Application.csproj", "{B4A96C1D-353D-44D6-8D5F-018F9129D1CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.Application", "src\ListaDeTarefas.Application\ListaDeTarefas.Application.csproj", "{B4A96C1D-353D-44D6-8D5F-018F9129D1CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListaDeTarefas.Infrastructure", "src\ListaDeTarefas.Infrastructure\ListaDeTarefas.Infrastructure.csproj", "{8E79962E-9956-480C-8FB8-74EF96E56484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.Infrastructure", "src\ListaDeTarefas.Infrastructure\ListaDeTarefas.Infrastructure.csproj", "{8E79962E-9956-480C-8FB8-74EF96E56484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListaDeTarefas.API", "src\ListaDeTarefas.API\ListaDeTarefas.API.csproj", "{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.API", "src\ListaDeTarefas.API\ListaDeTarefas.API.csproj", "{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
