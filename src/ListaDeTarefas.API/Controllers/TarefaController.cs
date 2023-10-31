@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ListaDeTarefas.API.Controllers
 {
     [ApiController]
-    [Route("tarefa")]
+    [Route("api/tarefa")]
     public class TarefaController : ControllerBase
     {
         [HttpGet]
