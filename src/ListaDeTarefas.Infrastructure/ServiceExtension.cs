@@ -38,6 +38,7 @@ namespace ListaDeTarefas.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ITarefaRepository, TarefaRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         private static void CreateDatabase(IConfiguration configuration)

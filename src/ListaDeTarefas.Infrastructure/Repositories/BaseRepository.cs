@@ -2,7 +2,6 @@
 using ListaDeTarefas.Domain.Interfaces;
 using ListaDeTarefas.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace ListaDeTarefas.Infrastructure.Repositories
 {
@@ -32,7 +31,7 @@ namespace ListaDeTarefas.Infrastructure.Repositories
             Context.Remove(entity);
         }
 
-        public async Task<T> GetById(long id, CancellationToken cancellationToken)
+        public async Task<T?> GetById(long id, CancellationToken cancellationToken)
         {
             var t = await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 
