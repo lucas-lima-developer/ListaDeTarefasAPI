@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using ListaDeTarefas.Application.Exceptions;
+using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;

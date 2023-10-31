@@ -1,4 +1,7 @@
-﻿namespace ListaDeTarefas.Application.UseCases.CreateUser
+﻿using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
+
+namespace ListaDeTarefas.Application.UseCases.CreateUser
 {
     public interface ICreateUserUseCase
     {

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Interfaces;
 

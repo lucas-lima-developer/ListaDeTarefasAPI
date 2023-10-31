@@ -1,4 +1,6 @@
-﻿namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
+﻿using ListaDeTarefas.Application.Responses;
+
+namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
 {
     public interface IGetByIdTarefaUseCase
     {
