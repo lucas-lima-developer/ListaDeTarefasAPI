@@ -7,6 +7,7 @@ namespace ListaDeTarefas.Infrastructure.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Tarefa> Tasks { get; set; }
+        public DbSet<Tarefa> Tarefas { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
