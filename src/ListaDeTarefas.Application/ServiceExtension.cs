@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using ListaDeTarefas.Application.Mappings;
+using ListaDeTarefas.Application.Requests;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.CreateUser;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
@@ -7,6 +9,7 @@ using ListaDeTarefas.Application.UseCases.GetAllTarefa;
 using ListaDeTarefas.Application.UseCases.GetByIdTarefa;
 using ListaDeTarefas.Application.UseCases.LoginUser;
 using ListaDeTarefas.Application.UseCases.UpdateTarefa;
+using ListaDeTarefas.Application.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListaDeTarefas.Application

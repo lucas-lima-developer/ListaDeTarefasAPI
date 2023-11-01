@@ -1,4 +1,6 @@
-﻿using ListaDeTarefas.Application.UseCases.CreateUser;
+﻿using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
+using ListaDeTarefas.Application.UseCases.CreateUser;
 using ListaDeTarefas.Application.UseCases.LoginUser;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
