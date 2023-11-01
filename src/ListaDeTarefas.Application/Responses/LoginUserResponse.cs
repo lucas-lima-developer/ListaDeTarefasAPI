@@ -1,4 +1,4 @@
-﻿namespace ListaDeTarefas.Application.UseCases.LoginUser
+﻿namespace ListaDeTarefas.Application.Responses
 {
     public class LoginUserResponse
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
+namespace ListaDeTarefas.Application.Responses
 {
     public sealed record DeleteTarefaResponse
     {

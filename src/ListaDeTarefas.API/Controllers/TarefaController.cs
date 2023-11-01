@@ -1,5 +1,7 @@
 using ListaDeTarefas.API.Contracts;
 using ListaDeTarefas.Application.Exceptions;
+using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Application.UseCases.CreateTarefa;
 using ListaDeTarefas.Application.UseCases.DeleteTarefa;
 using ListaDeTarefas.Application.UseCases.GetAllTarefa;

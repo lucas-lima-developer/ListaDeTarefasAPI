@@ -1,6 +1,12 @@
-﻿namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ListaDeTarefas.Application.Responses
 {
-    public class GetByIdTarefaResponse
+    public class GetAllTarefaResponse
     {
         public long Id { get; set; }
         public string? Title { get; set; }

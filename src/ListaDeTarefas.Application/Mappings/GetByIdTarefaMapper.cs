@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Domain.Entities;
 
-namespace ListaDeTarefas.Application.UseCases.GetByIdTarefa
+namespace ListaDeTarefas.Application.Mappings
 {
     public sealed class GetByIdTarefaMapper : Profile
     {

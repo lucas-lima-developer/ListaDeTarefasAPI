@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using ListaDeTarefas.Application.Requests;
 
-namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
+namespace ListaDeTarefas.Application.Validators
 {
     public class UpdateTarefaValidator : AbstractValidator<UpdateTarefaRequest>
     {
-        public UpdateTarefaValidator() 
+        public UpdateTarefaValidator()
         {
             RuleFor(tarefa => tarefa.Id)
                 .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.ID_EMPTY);

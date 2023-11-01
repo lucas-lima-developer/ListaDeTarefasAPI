@@ -1,6 +1,6 @@
-﻿namespace ListaDeTarefas.Application.UseCases.LoginUser
+﻿namespace ListaDeTarefas.Application.Requests
 {
-    public class LoginUserRequest
+    public class CreateUserRequest
     {
         public string? Email { get; set; }
         public string? Password { get; set; }

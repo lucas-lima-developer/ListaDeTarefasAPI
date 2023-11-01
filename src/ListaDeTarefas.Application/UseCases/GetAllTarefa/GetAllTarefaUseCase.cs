@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ListaDeTarefas.Application.Exceptions;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Domain.Interfaces;
 
 namespace ListaDeTarefas.Application.UseCases.GetAllTarefa

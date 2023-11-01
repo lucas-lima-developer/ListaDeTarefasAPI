@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using ListaDeTarefas.Application.Requests;
 
-namespace ListaDeTarefas.Application.UseCases.CreateTarefa
+namespace ListaDeTarefas.Application.Validators
 {
     public class CreateTarefaValidator : AbstractValidator<CreateTarefaRequest>
     {
-        public CreateTarefaValidator() 
+        public CreateTarefaValidator()
         {
             RuleFor(x => x.Title)
                 .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TITLE_NOT_EMPTY)

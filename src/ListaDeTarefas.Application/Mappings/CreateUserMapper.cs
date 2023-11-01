@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
+using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Domain.Entities;
 
-namespace ListaDeTarefas.Application.UseCases.CreateUser
+namespace ListaDeTarefas.Application.Mappings
 {
     public class CreateUserMapper : Profile
     {
-        public CreateUserMapper() 
+        public CreateUserMapper()
         {
             CreateMap<CreateUserRequest, User>();
             CreateMap<User, CreateUserResponse>();

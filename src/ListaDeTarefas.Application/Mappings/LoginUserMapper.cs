@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListaDeTarefas.Application.UseCases.LoginUser
+namespace ListaDeTarefas.Application.Mappings
 {
-    internal class LoginUserValidator
+    internal class LoginUserMapper
     {
     }
 }

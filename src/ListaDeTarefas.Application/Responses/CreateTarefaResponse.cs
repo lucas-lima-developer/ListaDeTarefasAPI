@@ -1,6 +1,6 @@
-﻿namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
+﻿namespace ListaDeTarefas.Application.Responses
 {
-    public class UpdateTarefaResponse
+    public class CreateTarefaResponse
     {
         public long Id { get; set; }
         public string? Title { get; set; }

@@ -1,4 +1,7 @@
-﻿namespace ListaDeTarefas.Application.UseCases.LoginUser
+﻿using ListaDeTarefas.Application.Requests;
+using ListaDeTarefas.Application.Responses;
+
+namespace ListaDeTarefas.Application.UseCases.LoginUser
 {
     public interface ILoginUserUseCase
     {
