@@ -11,19 +11,21 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
     public class CreateTarefaUseCase : ICreateTarefaUseCase
     {
         private readonly ITarefaRepository _tarefaRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateTarefaRequest> _validator;
 
-        public CreateTarefaUseCase(ITarefaRepository tarefaRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateTarefaRequest> validator)
+        public CreateTarefaUseCase(ITarefaRepository tarefaRepository, IUserRepository userRepository, IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateTarefaRequest> validator)
         {
             _tarefaRepository = tarefaRepository;
+            _userRepository = userRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _validator = validator;
         }
 
-        public async Task<CreateTarefaResponse> Execute(CreateTarefaRequest request, CancellationToken cancellationToken)
+        public async Task<CreateTarefaResponse> Execute(CreateTarefaRequest request, string emailUser, CancellationToken cancellationToken)
         {
             var result = await _validator.ValidateAsync(request, cancellationToken);
 
@@ -33,6 +35,8 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
             }
 
             var tarefa = _mapper.Map<Tarefa>(request);
+
+            tarefa.User = await _userRepository.GetByEmail(emailUser, cancellationToken);
 
             _tarefaRepository.Create(tarefa);
 
