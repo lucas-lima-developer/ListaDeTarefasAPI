@@ -5,6 +5,6 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
 {
     public interface ICreateTarefaUseCase
     {
-        Task<CreateTarefaResponse> Execute(CreateTarefaRequest request, CancellationToken cancellationToken);
+        Task<CreateTarefaResponse> Execute(CreateTarefaRequest request, string emailUser, CancellationToken cancellationToken);
     }
 }

@@ -10,6 +10,6 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
 {
     public interface IUpdateTarefaUseCase
     {
-        public Task<UpdateTarefaResponse> Execute(UpdateTarefaRequest request, CancellationToken cancellationToken);
+        public Task<UpdateTarefaResponse> Execute(UpdateTarefaRequest request, string email, CancellationToken cancellationToken);
     }
 }

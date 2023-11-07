@@ -9,6 +9,6 @@ namespace ListaDeTarefas.Application.UseCases.GetAllTarefa
 {
     public interface IGetAllTarefaUseCase
     {
-        Task<List<GetAllTarefaResponse>> Execute(CancellationToken cancellationToken);
+        Task<List<GetAllTarefaResponse>> Execute(string email, CancellationToken cancellationToken);
     }
 }
