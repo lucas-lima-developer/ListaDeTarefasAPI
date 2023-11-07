@@ -10,5 +10,6 @@ namespace ListaDeTarefas.Domain.Entities
         public string? Description { get;  set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime? CompletionDate { get; set; }
+        public User? User { get; set; }
     }
 }
