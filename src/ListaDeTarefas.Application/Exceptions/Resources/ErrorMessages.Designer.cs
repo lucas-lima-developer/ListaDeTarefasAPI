@@ -151,6 +151,15 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhuma tarefa foi encontrada..
+        /// </summary>
+        public static string TAREFA_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("TAREFA_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O título deve ter mais de 50 caracteres..
         /// </summary>
         public static string TITLE_MAX_LENGTH {
@@ -165,6 +174,24 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         public static string TITLE_NOT_EMPTY {
             get {
                 return ResourceManager.GetString("TITLE_NOT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum usuário foi encontrado..
+        /// </summary>
+        public static string USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail e/ou senha incorretos..
+        /// </summary>
+        public static string USER_WRONG_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("USER_WRONG_CREDENTIALS", resourceCulture);
             }
         }
     }

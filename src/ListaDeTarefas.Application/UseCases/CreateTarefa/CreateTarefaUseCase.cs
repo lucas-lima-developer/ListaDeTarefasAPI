@@ -28,18 +28,16 @@ namespace ListaDeTarefas.Application.UseCases.CreateTarefa
         public async Task<CreateTarefaResponse> Execute(CreateTarefaRequest request, string emailUser, CancellationToken cancellationToken)
         {
             var result = await _validator.ValidateAsync(request, cancellationToken);
-
-            if (!result.IsValid)
-            {
-                throw new ValidationErrorException(result);
-            }
+            if (!result.IsValid) throw new ValidationErrorException(result);
+            
+            var user = await _userRepository.GetByEmail(emailUser, cancellationToken);
+            if (user is null) throw new UserNotFoundException();
 
             var tarefa = _mapper.Map<Tarefa>(request);
 
-            tarefa.User = await _userRepository.GetByEmail(emailUser, cancellationToken);
+            tarefa.User = user;
 
             _tarefaRepository.Create(tarefa);
-
             await _unitOfWork.Commit(cancellationToken);
 
             return _mapper.Map<CreateTarefaResponse>(tarefa);

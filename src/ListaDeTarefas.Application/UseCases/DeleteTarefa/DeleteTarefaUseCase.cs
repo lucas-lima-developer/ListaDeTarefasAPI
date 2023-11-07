@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Application.Responses;
-using ListaDeTarefas.Domain.Entities;
 using ListaDeTarefas.Domain.Interfaces;
 
 namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
@@ -24,12 +23,10 @@ namespace ListaDeTarefas.Application.UseCases.DeleteTarefa
         public async Task<DeleteTarefaResponse> Execute(int id, string userEmail, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmail(userEmail, cancellationToken);
-
-            if (user is null) throw new Exception("usuário não encontrado");
+            if (user is null) throw new UserNotFoundException();
 
             var tarefa = await _tarefaRepository.GetById(user, id, cancellationToken);
-
-            if (tarefa == null) throw new TarefaNotFoundException(id);
+            if (tarefa == null) throw new TarefaNotFoundException();
 
             _tarefaRepository.Delete(tarefa);
             await _unitOfWork.Commit(cancellationToken);
