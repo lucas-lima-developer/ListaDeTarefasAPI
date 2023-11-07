@@ -2,7 +2,6 @@
 using ListaDeTarefas.Application.Responses;
 using ListaDeTarefas.Application.UseCases.CreateUser;
 using ListaDeTarefas.Application.UseCases.LoginUser;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ListaDeTarefas.API.Controllers
@@ -25,12 +24,6 @@ namespace ListaDeTarefas.API.Controllers
             var response = await useCase.Execute(request, cancellationToken);
 
             return Ok(response);
-        }
-
-        [HttpGet("test-auth"), Authorize]
-        public IActionResult TestAuth()
-        {
-            return Ok("Acesso Permitido");
         }
     }
 }
