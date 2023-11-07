@@ -28,10 +28,9 @@ namespace ListaDeTarefas.Application.UseCases.LoginUser
         public async Task<LoginUserResponse> Execute(LoginUserRequest request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmail(request.Email!, cancellationToken);
+            if (user == null) throw new WrongCredentialsException();
 
-            if (user == null) throw new TarefaNotFoundException("Usuário não encontrado");
-
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password)) throw new TarefaNotFoundException("Senha Errada");
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password)) throw new WrongCredentialsException();
 
             string token = CreateToken(user);
 
