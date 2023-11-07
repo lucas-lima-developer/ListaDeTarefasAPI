@@ -21,10 +21,10 @@ namespace ListaDeTarefas.Application.UseCases.GetAllTarefa
         public async Task<List<GetAllTarefaResponse>> Execute(string emailUser, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmail(emailUser, cancellationToken);
+            if (user is null) throw new UserNotFoundException();
 
             var tarefas = await _tarefaRepository.GetAll(user!, cancellationToken);
-
-            if (tarefas?.Count == 0) throw new TarefaNotFoundException("Nenhuma tarefa encontrada.");
+            if (tarefas.Count == 0 || tarefas is null) throw new TarefaNotFoundException();
 
             return _mapper.Map<List<GetAllTarefaResponse>>(tarefas);
         }
