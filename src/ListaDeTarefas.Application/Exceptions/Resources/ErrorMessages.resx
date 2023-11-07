@@ -147,10 +147,19 @@
   <data name="PRIORITY_RANK" xml:space="preserve">
     <value>A prioridade deve ser baixa, média ou alta.</value>
   </data>
+  <data name="TAREFA_NOT_FOUND" xml:space="preserve">
+    <value>Nenhuma tarefa foi encontrada.</value>
+  </data>
   <data name="TITLE_MAX_LENGTH" xml:space="preserve">
     <value>O título deve ter mais de 50 caracteres.</value>
   </data>
   <data name="TITLE_NOT_EMPTY" xml:space="preserve">
     <value>O título não pode ser vazio.</value>
+  </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>Nenhum usuário foi encontrado.</value>
+  </data>
+  <data name="USER_WRONG_CREDENTIALS" xml:space="preserve">
+    <value>E-mail e/ou senha incorretos.</value>
   </data>
 </root>
