@@ -28,23 +28,19 @@ namespace ListaDeTarefas.Application.UseCases.UpdateTarefa
         public async Task<UpdateTarefaResponse> Execute(UpdateTarefaRequest request, string email, CancellationToken cancellationToken)
         {
             var result = await _validator.ValidateAsync(request, cancellationToken);
-
             if (!result.IsValid) throw new ValidationErrorException(result);
 
             var user = await _userRepository.GetByEmail(email, cancellationToken);
-
-            if (user is null) throw new Exception("Usuário não encontrado");
+            if (user is null) throw new UserNotFoundException();
 
             var tarefa = await _tarefaRepository.GetById(user, request.Id, cancellationToken);
-
-            if (tarefa is null) throw new TarefaNotFoundException(request.Id);
+            if (tarefa is null) throw new TarefaNotFoundException();
 
             _mapper.Map(request, tarefa);
 
             tarefa.CompletionDate = request.IsCompleted ? DateTime.Now : null;
 
             _tarefaRepository.Update(tarefa);
-
             await _unitOfWorK.Commit(cancellationToken);
 
             return _mapper.Map<UpdateTarefaResponse>(tarefa);
