@@ -61,24 +61,6 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A descrição não deve ter mais de 150 caracteres..
-        /// </summary>
-        public static string DESCRIPTION_MAX_LENGTH {
-            get {
-                return ResourceManager.GetString("DESCRIPTION_MAX_LENGTH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A descrição não pode ser vazia..
-        /// </summary>
-        public static string DESCRIPTION_NOT_EMPTY {
-            get {
-                return ResourceManager.GetString("DESCRIPTION_NOT_EMPTY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O ID não pode ser vazio..
         /// </summary>
         public static string ID_EMPTY {
@@ -106,47 +88,29 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo de tarefa completada não pode ser vazio..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;description&quot; não pode estar vazio..
         /// </summary>
-        public static string IS_COMPLETED_NOT_EMPTY {
+        public static string TAREFA_DESCRIPTION_EMPTY {
             get {
-                return ResourceManager.GetString("IS_COMPLETED_NOT_EMPTY", resourceCulture);
+                return ResourceManager.GetString("TAREFA_DESCRIPTION_EMPTY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A data limite deve ser maior que a data atual..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;description&quot; não deve ter mais de 150 caracteres..
         /// </summary>
-        public static string LIMITDATE_GREATHER_THAN_NOW {
+        public static string TAREFA_DESCRIPTION_MAX_LENGTH {
             get {
-                return ResourceManager.GetString("LIMITDATE_GREATHER_THAN_NOW", resourceCulture);
+                return ResourceManager.GetString("TAREFA_DESCRIPTION_MAX_LENGTH", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A data limite não pode ser vazia..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;IsCompleted&quot; não pode ser vazio..
         /// </summary>
-        public static string LIMITDATE_NOT_EMPTY {
+        public static string TAREFA_IS_COMPLETED_EMPTY {
             get {
-                return ResourceManager.GetString("LIMITDATE_NOT_EMPTY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A prioridade não pode ser vazia..
-        /// </summary>
-        public static string PRIORITY_NOT_EMPTY {
-            get {
-                return ResourceManager.GetString("PRIORITY_NOT_EMPTY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a A prioridade deve ser baixa, média ou alta..
-        /// </summary>
-        public static string PRIORITY_RANK {
-            get {
-                return ResourceManager.GetString("PRIORITY_RANK", resourceCulture);
+                return ResourceManager.GetString("TAREFA_IS_COMPLETED_EMPTY", resourceCulture);
             }
         }
         
@@ -160,25 +124,25 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O título deve ter mais de 50 caracteres..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;title&quot; não pode ser vazio..
         /// </summary>
-        public static string TITLE_MAX_LENGTH {
+        public static string TAREFA_TITLE_EMPTY {
             get {
-                return ResourceManager.GetString("TITLE_MAX_LENGTH", resourceCulture);
+                return ResourceManager.GetString("TAREFA_TITLE_EMPTY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O título não pode ser vazio..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;title&quot; não deve ter mais de 50 caracteres..
         /// </summary>
-        public static string TITLE_NOT_EMPTY {
+        public static string TAREFA_TITLE_MAX_LENGTH {
             get {
-                return ResourceManager.GetString("TITLE_NOT_EMPTY", resourceCulture);
+                return ResourceManager.GetString("TAREFA_TITLE_MAX_LENGTH", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo email não pode ser vazio..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;email&quot; não pode ser vazio..
         /// </summary>
         public static string USER_EMAIL_EMPTY {
             get {
@@ -187,7 +151,7 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Deve estar no formato de e-mail..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;email&quot; deve estar no formato de e-mail..
         /// </summary>
         public static string USER_EMAIL_WRONG_FORMAT {
             get {
@@ -205,7 +169,7 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha não pode estar vazio..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;password&quot; não pode estar vazio..
         /// </summary>
         public static string USER_PASSWORD_EMPTY {
             get {
@@ -214,7 +178,7 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha deve ter até 20 caracteres..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;password&quot; deve ter até 20 caracteres..
         /// </summary>
         public static string USER_PASSWORD_MAX_LENGTH {
             get {
@@ -223,7 +187,7 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha deve ter pelo menos 5 caracteres..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;password&quot; deve ter pelo menos 5 caracteres..
         /// </summary>
         public static string USER_PASSWORD_MIN_LENGTH {
             get {

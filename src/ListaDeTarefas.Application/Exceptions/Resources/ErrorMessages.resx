@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DESCRIPTION_MAX_LENGTH" xml:space="preserve">
-    <value>A descrição não deve ter mais de 150 caracteres.</value>
-  </data>
-  <data name="DESCRIPTION_NOT_EMPTY" xml:space="preserve">
-    <value>A descrição não pode ser vazia.</value>
-  </data>
   <data name="ID_EMPTY" xml:space="preserve">
     <value>O ID não pode ser vazio.</value>
   </data>
@@ -132,47 +126,41 @@
   <data name="ID_PARAM_NOT_EQUAL_ID_BODY" xml:space="preserve">
     <value>O ID passado no parâmetro deve ser igual ao ID do body.</value>
   </data>
-  <data name="IS_COMPLETED_NOT_EMPTY" xml:space="preserve">
-    <value>O campo de tarefa completada não pode ser vazio.</value>
+  <data name="TAREFA_DESCRIPTION_EMPTY" xml:space="preserve">
+    <value>O campo "description" não pode estar vazio.</value>
   </data>
-  <data name="LIMITDATE_GREATHER_THAN_NOW" xml:space="preserve">
-    <value>A data limite deve ser maior que a data atual.</value>
+  <data name="TAREFA_DESCRIPTION_MAX_LENGTH" xml:space="preserve">
+    <value>O campo "description" não deve ter mais de 150 caracteres.</value>
   </data>
-  <data name="LIMITDATE_NOT_EMPTY" xml:space="preserve">
-    <value>A data limite não pode ser vazia.</value>
-  </data>
-  <data name="PRIORITY_NOT_EMPTY" xml:space="preserve">
-    <value>A prioridade não pode ser vazia.</value>
-  </data>
-  <data name="PRIORITY_RANK" xml:space="preserve">
-    <value>A prioridade deve ser baixa, média ou alta.</value>
+  <data name="TAREFA_IS_COMPLETED_EMPTY" xml:space="preserve">
+    <value>O campo "IsCompleted" não pode ser vazio.</value>
   </data>
   <data name="TAREFA_NOT_FOUND" xml:space="preserve">
     <value>Nenhuma tarefa foi encontrada.</value>
   </data>
-  <data name="TITLE_MAX_LENGTH" xml:space="preserve">
-    <value>O título deve ter mais de 50 caracteres.</value>
+  <data name="TAREFA_TITLE_EMPTY" xml:space="preserve">
+    <value>O campo "title" não pode ser vazio.</value>
   </data>
-  <data name="TITLE_NOT_EMPTY" xml:space="preserve">
-    <value>O título não pode ser vazio.</value>
+  <data name="TAREFA_TITLE_MAX_LENGTH" xml:space="preserve">
+    <value>O campo "title" não deve ter mais de 50 caracteres.</value>
   </data>
   <data name="USER_EMAIL_EMPTY" xml:space="preserve">
-    <value>O campo email não pode ser vazio.</value>
+    <value>O campo "email" não pode ser vazio.</value>
   </data>
   <data name="USER_EMAIL_WRONG_FORMAT" xml:space="preserve">
-    <value>Deve estar no formato de e-mail.</value>
+    <value>O campo "email" deve estar no formato de e-mail.</value>
   </data>
   <data name="USER_NOT_FOUND" xml:space="preserve">
     <value>Nenhum usuário foi encontrado.</value>
   </data>
   <data name="USER_PASSWORD_EMPTY" xml:space="preserve">
-    <value>O campo senha não pode estar vazio.</value>
+    <value>O campo "password" não pode estar vazio.</value>
   </data>
   <data name="USER_PASSWORD_MAX_LENGTH" xml:space="preserve">
-    <value>O campo senha deve ter até 20 caracteres.</value>
+    <value>O campo "password" deve ter até 20 caracteres.</value>
   </data>
   <data name="USER_PASSWORD_MIN_LENGTH" xml:space="preserve">
-    <value>O campo senha deve ter pelo menos 5 caracteres.</value>
+    <value>O campo "password" deve ter pelo menos 5 caracteres.</value>
   </data>
   <data name="USER_WRONG_CREDENTIALS" xml:space="preserve">
     <value>E-mail e/ou senha incorretos.</value>
