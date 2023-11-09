@@ -39,7 +39,9 @@ namespace ListaDeTarefas.Application
         {
             services
                 .AddScoped<IValidator<CreateTarefaRequest>, CreateTarefaValidator>()
-                .AddScoped<IValidator<UpdateTarefaRequest>, UpdateTarefaValidator>();
+                .AddScoped<IValidator<UpdateTarefaRequest>, UpdateTarefaValidator>()
+                .AddScoped<IValidator<LoginUserRequest>, LoginUserValidator>()
+                .AddScoped<IValidator<CreateUserRequest>, CreateUserValidator>();
         }
 
         private static void AddMapper(IServiceCollection services)
