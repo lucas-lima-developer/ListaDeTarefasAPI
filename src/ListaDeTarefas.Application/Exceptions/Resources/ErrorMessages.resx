@@ -156,8 +156,23 @@
   <data name="TITLE_NOT_EMPTY" xml:space="preserve">
     <value>O título não pode ser vazio.</value>
   </data>
+  <data name="USER_EMAIL_EMPTY" xml:space="preserve">
+    <value>O campo email não pode ser vazio.</value>
+  </data>
+  <data name="USER_EMAIL_WRONG_FORMAT" xml:space="preserve">
+    <value>Deve estar no formato de e-mail.</value>
+  </data>
   <data name="USER_NOT_FOUND" xml:space="preserve">
     <value>Nenhum usuário foi encontrado.</value>
+  </data>
+  <data name="USER_PASSWORD_EMPTY" xml:space="preserve">
+    <value>O campo senha não pode estar vazio.</value>
+  </data>
+  <data name="USER_PASSWORD_MAX_LENGTH" xml:space="preserve">
+    <value>O campo senha deve ter até 20 caracteres.</value>
+  </data>
+  <data name="USER_PASSWORD_MIN_LENGTH" xml:space="preserve">
+    <value>O campo senha deve ter pelo menos 5 caracteres.</value>
   </data>
   <data name="USER_WRONG_CREDENTIALS" xml:space="preserve">
     <value>E-mail e/ou senha incorretos.</value>

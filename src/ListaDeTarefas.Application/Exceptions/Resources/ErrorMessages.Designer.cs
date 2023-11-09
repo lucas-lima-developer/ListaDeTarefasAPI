@@ -178,11 +178,56 @@ namespace ListaDeTarefas.Application.Exceptions.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo email não pode ser vazio..
+        /// </summary>
+        public static string USER_EMAIL_EMPTY {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Deve estar no formato de e-mail..
+        /// </summary>
+        public static string USER_EMAIL_WRONG_FORMAT {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_WRONG_FORMAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum usuário foi encontrado..
         /// </summary>
         public static string USER_NOT_FOUND {
             get {
                 return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha não pode estar vazio..
+        /// </summary>
+        public static string USER_PASSWORD_EMPTY {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha deve ter até 20 caracteres..
+        /// </summary>
+        public static string USER_PASSWORD_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo senha deve ter pelo menos 5 caracteres..
+        /// </summary>
+        public static string USER_PASSWORD_MIN_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MIN_LENGTH", resourceCulture);
             }
         }
         
