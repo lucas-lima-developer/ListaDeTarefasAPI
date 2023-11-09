@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Application.Requests;
 using ListaDeTarefas.Application.Responses;
@@ -18,21 +17,16 @@ namespace ListaDeTarefas.Application.UseCases.LoginUser
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        private readonly IValidator<LoginUserRequest> _validator;
 
-        public LoginUserUseCase(IUserRepository userRepository, IMapper mapper, IConfiguration configuration, IValidator<LoginUserRequest> validator)
+        public LoginUserUseCase(IUserRepository userRepository, IMapper mapper, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _configuration = configuration;
-            _validator = validator;
         }
 
         public async Task<LoginUserResponse> Execute(LoginUserRequest request, CancellationToken cancellationToken)
         {
-            var result = await _validator.ValidateAsync(request, cancellationToken);
-            if (!result.IsValid) throw new ValidationErrorException(result);
-
             var user = await _userRepository.GetByEmail(request.Email!, cancellationToken);
             if (user == null) throw new WrongCredentialsException();
 
