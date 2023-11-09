@@ -8,11 +8,11 @@ namespace ListaDeTarefas.Application.Validators
         public CreateTarefaValidator()
         {
             RuleFor(x => x.Title)
-                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TITLE_NOT_EMPTY)
-                .MaximumLength(50).WithMessage(Exceptions.Resources.ErrorMessages.TITLE_MAX_LENGTH);
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TAREFA_TITLE_EMPTY)
+                .MaximumLength(50).WithMessage(Exceptions.Resources.ErrorMessages.TAREFA_TITLE_MAX_LENGTH);
             RuleFor(x => x.Description)
-                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_NOT_EMPTY)
-                .MaximumLength(150).WithMessage(Exceptions.Resources.ErrorMessages.DESCRIPTION_MAX_LENGTH);
+                .NotEmpty().WithMessage(Exceptions.Resources.ErrorMessages.TAREFA_DESCRIPTION_EMPTY)
+                .MaximumLength(150).WithMessage(Exceptions.Resources.ErrorMessages.TAREFA_DESCRIPTION_MAX_LENGTH);
         }
     }
 }
