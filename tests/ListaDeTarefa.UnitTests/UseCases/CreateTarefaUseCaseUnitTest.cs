@@ -80,7 +80,11 @@ namespace TestProject1.UseCases
         public async Task Should_ThrowValidationErrorException_When_TitleLengthIsGreatherThan50()
         {
             // Arrange 
-            CreateTarefaRequest request = new CreateTarefaRequest { Title = "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitlea", Description = "Description" };
+            string title = "";
+            for (int i = 0; i < 6; i++)
+                title += "0123456789";
+
+            CreateTarefaRequest request = new CreateTarefaRequest { Title = title, Description = "Description" };
             User user = new User { Id = 1, Tarefas = new List<Tarefa>(), DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Email = "email@email.com", Password = "123" };
 
             _userRepositoryMock.Setup(r => r.GetByEmail(user.Email, new CancellationToken())).ReturnsAsync(user);
@@ -110,6 +114,28 @@ namespace TestProject1.UseCases
 
             // Assert
             await result.Should().ThrowAsync<ValidationErrorException>().WithMessage("O campo \"description\" não pode estar vazio.");
+        }
+
+        [Fact]
+        public async Task Should_ThrowValidationErrorException_When_DescriptionLengthIsGreatherThan150()
+        {
+            // Arrange 
+            string description = "";
+            for (int i = 0; i < 16; i++)
+                description += "0123456789";
+
+            CreateTarefaRequest request = new CreateTarefaRequest { Title = "Title", Description = description };
+            User user = new User { Id = 1, Tarefas = new List<Tarefa>(), DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Email = "email@email.com", Password = "123" };
+
+            _userRepositoryMock.Setup(r => r.GetByEmail(user.Email, new CancellationToken())).ReturnsAsync(user);
+
+            var useCase = new CreateTarefaUseCase(_tarefaRepositoryMock.Object, _userRepositoryMock.Object, _unitOfWorkMock.Object, _mapperMock, _validatorMock);
+
+            // Act
+            var result = async () => await useCase.Execute(request, user.Email, new CancellationToken());
+
+            // Assert
+            await result.Should().ThrowAsync<ValidationErrorException>().WithMessage("O campo \"description\" não deve ter mais de 150 caracteres.");
         }
     }
 }
