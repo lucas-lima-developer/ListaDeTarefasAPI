@@ -137,5 +137,21 @@ namespace TestProject1.UseCases
             // Assert
             await result.Should().ThrowAsync<ValidationErrorException>().WithMessage("O campo \"description\" não deve ter mais de 150 caracteres.");
         }
+
+        [Fact]
+        public async Task Should_ThrowUserNotFoundException_When_UserIsNotFound()
+        {
+            // Arrange 
+            CreateTarefaRequest request = new CreateTarefaRequest { Title = "Title", Description = "Description" };
+            string userEmail = "email@email.com";
+
+            var useCase = new CreateTarefaUseCase(_tarefaRepositoryMock.Object, _userRepositoryMock.Object, _unitOfWorkMock.Object, _mapperMock, _validatorMock);
+
+            // Act
+            var result = async () => await useCase.Execute(request, userEmail, new CancellationToken());
+
+            // Assert
+            await result.Should().ThrowAsync<UserNotFoundException>().WithMessage("Nenhum usuário foi encontrado.");
+        }
     }
 }
