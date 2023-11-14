@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using FluentValidation;
+using ListaDeTarefas.Application.Exceptions;
 using ListaDeTarefas.Application.Mappings;
 using ListaDeTarefas.Application.Requests;
 using ListaDeTarefas.Application.Responses;
@@ -36,7 +37,7 @@ namespace TestProject1.UseCases
         public async Task Should_ReturnCreateTarefaResponse_When_ValidUserAndValidRequest()
         {
             // Arrange
-            CreateTarefaRequest request = new CreateTarefaRequest { Title = "Teste", Description = "Teste" };
+            CreateTarefaRequest request = new CreateTarefaRequest { Title = "Title", Description = "Description" };
             User user = new User { Id = 1, Tarefas = new List<Tarefa>(), DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Email= "email@email.com", Password = "123" };
 
             _userRepositoryMock.Setup(r => r.GetByEmail(user.Email, new CancellationToken())).ReturnsAsync(user);
@@ -44,7 +45,7 @@ namespace TestProject1.UseCases
             var useCase = new CreateTarefaUseCase(_tarefaRepositoryMock.Object, _userRepositoryMock.Object, _unitOfWorkMock.Object, _mapperMock, _validatorMock);
 
             // Act
-            var result = await useCase.Execute(request, "email@email.com", new CancellationToken());
+            var result = await useCase.Execute(request, user.Email, new CancellationToken());
 
             // Assert
             result.Id.Should().Be(0);
@@ -55,6 +56,24 @@ namespace TestProject1.UseCases
             result.IsCompleted.Should().BeFalse();
             result.CompletionDate.Should().BeNull();
             result.GetType().Should().Be(typeof(CreateTarefaResponse));
+        }
+
+        [Fact]
+        public async Task Should_ThrowValidationErrorException_When_TitleIsEmpty()
+        {
+            // Arrange 
+            CreateTarefaRequest request = new CreateTarefaRequest { Title = "", Description = "Teste" };
+            User user = new User { Id = 1, Tarefas = new List<Tarefa>(), DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Email = "email@email.com", Password = "123" };
+
+            _userRepositoryMock.Setup(r => r.GetByEmail(user.Email, new CancellationToken())).ReturnsAsync(user);
+
+            var useCase = new CreateTarefaUseCase(_tarefaRepositoryMock.Object, _userRepositoryMock.Object, _unitOfWorkMock.Object, _mapperMock, _validatorMock);
+
+            // Act
+            var result = async () => await useCase.Execute(request, user.Email, new CancellationToken());
+
+            // Assert
+            await result.Should().ThrowAsync<ValidationErrorException>().WithMessage("O campo \"title\" não pode ser vazio.");
         }
     }
 }
