@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.API", "src\ListaDeTarefas.API\ListaDeTarefas.API.csproj", "{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListaDeTarefas.UnitTests", "tests\ListaDeTarefa.UnitTests\ListaDeTarefas.UnitTests.csproj", "{B96B3AB6-1AFD-4762-9784-A8C1F8C60036}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80A61A13-9156-43B8-8F3D-523B2E2FF5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96B3AB6-1AFD-4762-9784-A8C1F8C60036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96B3AB6-1AFD-4762-9784-A8C1F8C60036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96B3AB6-1AFD-4762-9784-A8C1F8C60036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96B3AB6-1AFD-4762-9784-A8C1F8C60036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{B4A96C1D-353D-44D6-8D5F-018F9129D1CF} = {A3E9E780-EE72-455D-8B2F-E17ACC51F9F4}
 		{8E79962E-9956-480C-8FB8-74EF96E56484} = {A3E9E780-EE72-455D-8B2F-E17ACC51F9F4}
 		{80A61A13-9156-43B8-8F3D-523B2E2FF5CF} = {A3E9E780-EE72-455D-8B2F-E17ACC51F9F4}
+		{B96B3AB6-1AFD-4762-9784-A8C1F8C60036} = {AA4AE5F8-208F-418B-B3E7-6D43D004C7FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B5F1122-29BA-42ED-9FD6-CB49A4AE58ED}
